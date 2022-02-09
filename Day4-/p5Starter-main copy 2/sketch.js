@@ -3,7 +3,7 @@ let chartHeight = 400;
 
 
 //Bar height 
-let data = [50, 30, 90]
+let data = [100, 500, 300]
 
 let scaledData = [];
 
@@ -20,11 +20,13 @@ let spacing = 10
 
 
 
-let numOfTicks = 10;
+let numOfTicks = 5;
 
 
 //Length of tickets
-let tickLength = 10;
+let tickLength = 5;
+
+let tickIncrements;
 
 //space between ticks
 let tickSpacing = chartHeight / numOfTicks
@@ -43,8 +45,15 @@ function setup() {
 
     maxValue = max(data);
 
+    // changes tick relative
+    tickIncrements = Math.round(maxValue / numOfTicks);
+
     for (let i = 0; i < data.length; i++) {
-        let tempVal = data[i] * 4;
+        //input range output range 
+        let tempVal = map(data[i], 0, maxValue, 0, chartHeight)
+
+
+       // let tempVal = data[i] * 4;
         scaledData.push(tempVal)
 
     }
@@ -76,7 +85,9 @@ function draw() {
 
         textSize(12)
         textAlign(RIGHT, CENTER)
-        text(i * ticketValues, -15, -i * ticketValues)
+
+        //draws ticks relative to bar
+        text(i * tickIncrements, -15, -i * ticketValues)
 
     }
 
@@ -87,15 +98,12 @@ function draw() {
     translate(margin, 0)
 
     //Bar loop
-    for (i = 0; i < data.length; i++) {
+    for (i = 0; i < scaledData.length; i++) {
         fill(255, 0, 0)
-        rect((barWidth + spacing) * i, 0, barWidth, -data[i])
+        rect((barWidth + spacing) * i, 0, barWidth, -scaledData[i])
 
         //text("Hello", (barWidth + spacing) * i, 0)
 
     }
-
-
-
 
 }
