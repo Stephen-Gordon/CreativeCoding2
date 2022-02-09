@@ -3,7 +3,7 @@ let chartHeight = 400;
 
 
 //Bar height 
-let data = [100, 500, 300]
+let data = [100, 200, 300]
 
 let scaledData = [];
 
@@ -102,7 +102,14 @@ function draw() {
         fill(255, 0, 0)
         rect((barWidth + spacing) * i, 0, barWidth, -scaledData[i])
 
-        //text("Hello", (barWidth + spacing) * i, 0)
+
+
+
+        textSize(17)
+        textAlign(CENTER, CENTER)
+
+        
+        text(data[i], (((barWidth + spacing) * i) + barWidth / 2) , -scaledData[i]-13)
 
     }
 
