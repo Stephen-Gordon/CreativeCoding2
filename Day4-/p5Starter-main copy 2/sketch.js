@@ -3,8 +3,9 @@ let chartHeight = 400;
 
 
 //Bar height 
-let data = [50, 360, 100, 200, 40, 50]
+let data = [50, 30, 90]
 
+let scaledData = [];
 
 
 let maxValue;
@@ -39,17 +40,24 @@ console.log(barWidth)
 
 function setup() {
     createCanvas(500, 500);
+
     maxValue = max(data);
+
+    for (let i = 0; i < data.length; i++) {
+        let tempVal = data[i] * 4;
+        scaledData.push(tempVal)
+
+    }
 }
 
 function draw() {
     background(255)
 
-    
 
 
 
-    
+
+
     // First translation
     translate(50, 450)
     line(0, 0, 0, -chartHeight)
@@ -58,17 +66,17 @@ function draw() {
 
 
     //Ticks + SIde numbers loop
-    
+
 
     for (i = 0; i <= numOfTicks; i++) {
         stroke(0)
         strokeWeight(2)
         //Draws ticks
         line(0, -i * tickSpacing, -tickLength, -i * tickSpacing)
-        
+
         textSize(12)
         textAlign(RIGHT, CENTER)
-        text(i * ticketValues,-15, -i * ticketValues)
+        text(i * ticketValues, -15, -i * ticketValues)
 
     }
 
@@ -82,12 +90,12 @@ function draw() {
     for (i = 0; i < data.length; i++) {
         fill(255, 0, 0)
         rect((barWidth + spacing) * i, 0, barWidth, -data[i])
-        
-        text("Hello", (barWidth + spacing) * i, 0)
+
+        //text("Hello", (barWidth + spacing) * i, 0)
 
     }
 
-    
+
 
 
 }
