@@ -7,6 +7,7 @@ let data = [100, 200, 300]
 
 let scaledData = [];
 
+let dataLabels = ["oranges", "bananas", "apples"]
 
 let maxValue;
 
@@ -53,7 +54,7 @@ function setup() {
         let tempVal = map(data[i], 0, maxValue, 0, chartHeight)
 
 
-       // let tempVal = data[i] * 4;
+        // let tempVal = data[i] * 4;
         scaledData.push(tempVal)
 
     }
@@ -74,7 +75,7 @@ function draw() {
 
 
 
-    //Ticks + SIde numbers loop
+    //Ticks +  numbers loop
 
 
     for (i = 0; i <= numOfTicks; i++) {
@@ -99,7 +100,7 @@ function draw() {
 
     //Bar loop
     for (i = 0; i < scaledData.length; i++) {
-        fill(255, 0, 0)
+        fill(205, 92, 92)
         rect((barWidth + spacing) * i, 0, barWidth, -scaledData[i])
 
 
@@ -107,10 +108,12 @@ function draw() {
 
         textSize(17)
         textAlign(CENTER, CENTER)
+        text(data[i], (((barWidth + spacing) * i) + barWidth / 2), -scaledData[i] - 13)
 
-        
-        text(data[i], (((barWidth + spacing) * i) + barWidth / 2) , -scaledData[i]-13)
 
+        textSize(17)
+        textAlign(CENTER, CENTER)
+        text(dataLabels[i], (((barWidth + spacing) * i) + barWidth / 2), 13)
     }
 
 }
