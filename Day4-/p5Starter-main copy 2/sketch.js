@@ -24,7 +24,7 @@ let spacing = 10
 let numOfTicks = 5;
 
 
-//Length of tickets
+//Length of ticks
 let tickLength = 5;
 
 let tickIncrements;
@@ -32,7 +32,7 @@ let tickIncrements;
 //space between ticks
 let tickSpacing = chartHeight / numOfTicks
 
-let ticketValues = chartHeight / numOfTicks
+let tickValues = chartHeight / numOfTicks
 
 let availableWidth = chartWidth - (margin * 2) - (spacing * (data.length));
 
@@ -88,7 +88,7 @@ function draw() {
         textAlign(RIGHT, CENTER)
 
         //draws ticks relative to bar
-        text(i * tickIncrements, -15, -i * ticketValues)
+        text(i * tickIncrements, -15, -i * tickvalues)
 
     }
 
@@ -109,6 +109,12 @@ function draw() {
         textSize(17)
         textAlign(CENTER, CENTER)
         text(data[i], (((barWidth + spacing) * i) + barWidth / 2), -scaledData[i] - 13)
+
+
+
+
+
+
 
 
         textSize(17)
