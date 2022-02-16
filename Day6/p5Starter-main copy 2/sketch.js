@@ -1,13 +1,14 @@
 let chartWidth = 300;
 let chartHeight = 300;
 //let data = [30, 100, 90, 20, 180, 94];
-let scaledData = [];
+//let scaledData = [];
 let dataLabels = ["Oranges", "Bananas", "Lemons", "Limes", "Apples", "Grapes"];
 
 let posX = 100;
 let posY = 450;
 let colors;
 let numPlaces = 1;
+//Controls
 let showValues = true
 let showLabels = true
 let rotateLabels = true
@@ -22,8 +23,10 @@ let data = [{name:"Oranges", total:63},
 ]
 
 
+//An array method that maps out a new array
+//Takes values from one array to another
 let listValues = data.map(function (x){return x.total});
-console.log(listValues)
+//console.log(listValues)
 
 
 
@@ -49,14 +52,28 @@ function setup() {
               color('#f68f6a'), 
               color('#f3646a')]
 
+
+    //Gets maxvalue 
     maxValue = max(listValues);
     tickIncrements = maxValue / numTicks;
 
+
+
+    /* //Takes a value from an input and output
+    //Scales the chart
     for(let i=0; i<data.length; i++){
         let tempVal = map(data[i].total, 0, maxValue, 0, chartHeight);
         scaledData.push(tempVal);
-    }
+    } */
 }
+
+
+function scaleDate(){
+
+    return map(data[i].total, 0, maxValue, 0, chartHeight);
+
+}
+
 
 function draw() {
     background(0);
