@@ -5,7 +5,7 @@ class dataObject{
         this.name = _title
         this.total = _num
         this.price = _price
-        this.totalPrice = this.totalPrice() 
+        this.totalPrice = this.totalPrice(); 
     }
 
 
