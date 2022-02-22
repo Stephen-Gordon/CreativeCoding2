@@ -15,23 +15,33 @@ let data02 = [
 
 let chart01;
 let chart02;
+let chart03;
+
 
 function setup() {
-    createCanvas(800, 800);
+    createCanvas(1200, 1200);
 
     chart01 = new HorBarChart(data01)
-    chart01.chartWidth = 200;
-    chart01.chartHeight = 200
+    chart01.chartWidth = 300;
+    chart01.chartHeight = 300
     chart01.posX = 100;
     chart01.posY = 400;
     chart01.updateValues();
 
     chart02 = new BarChart(data02)
-    chart02.chartWidth = 200;
-    chart02.chartHeight = 200
-    chart02.posX = 400;
+    chart02.chartWidth = 300;
+    chart02.chartHeight = 300
+    chart02.posX = 600;
     chart02.posY = 400;
     chart02.updateValues();
+
+
+    chart03 = new StackedChart(data02)
+    chart03.chartWidth = 300;
+    chart03.chartHeight = 300
+    chart03.posX = 100;
+    chart03.posY = 800;
+    chart03.updateValues();
 
 }
 
@@ -42,4 +52,6 @@ function draw() {
     chart01.render();
     chart02.updateValues();
     chart02.render();
+    chart03.updateValues();
+    chart03.render();
 }
