@@ -118,7 +118,7 @@ class BarChart {
                     textSize(14);
                     textAlign(LEFT, CENTER);
                     translate(((this.barWidth + this.spacing) * i) + this.barWidth / 2, 10);
-                    rotate(PI / 2)
+                    rotate(PI / 4)
                     text(this.data[i].name, 0, 0);
                     pop()
                 } else {

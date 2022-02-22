@@ -38,6 +38,8 @@ function setup() {
 
 function draw() {
     background(50);
+    chart01.updateValues();
     chart01.render();
+    chart02.updateValues();
     chart02.render();
 }

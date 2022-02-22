@@ -18,7 +18,7 @@ class HorBarChart {
 
         this.showValues = true;
         this.showLabels = true;
-        this.rotateLabels = false;
+        this.rotateLabels = true;
 
         this.colors = [color('#ffe066'), color('#fab666'), color('#f68f6a'), color('#f3646a')];
 
@@ -103,14 +103,14 @@ class HorBarChart {
             noStroke();
 
 
-            rect(0,-(this.barWidth + this.spacing) * i , -this.scaleData(-this.data[i].total), this.barWidth );
+            rect(0,(this.barWidth + this.spacing) * -i , this.scaleData(this.data[i].total), -this.barWidth );
             
             //numbers (text)
             noStroke();
             fill(255);
             textSize(16);
-            textAlign(CENTER, RIGHT);
-            text(this.data[i].total, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].total));
+            textAlign(RIGHT, CENTER);
+            text(this.data[i].total, this.scaleData(this.data[i].total) + 20, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2); 
 
             //text
             if (this.showLabels) {
@@ -118,10 +118,10 @@ class HorBarChart {
                     push()
                     noStroke();
                     textSize(14);
-                    textAlign(LEFT, CENTER);
-                    translate(((this.barWidth + this.spacing) * i) + this.barWidth / 2, 10);
-                    rotate(PI / 2)
-                    text(this.data[i].name, 0, 0);
+                    textAlign(RIGHT, CENTER);
+                    translate(-10,((this.barWidth + this.spacing) * -i) - this.barWidth / 2 );
+                    rotate(PI / 4)
+                    text(this.data[i].name, 0,0);
                     pop()
                 } else {
 
