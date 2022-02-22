@@ -2,31 +2,71 @@ class BarChart {
     constructor(_data) {
         this.data = _data;
 
-        this.chartWidth = 300;
-        this.chartHeight = 300;
-        this.spacing = 5;
-        this.margin = 30;
-        this.numTicks = 10;
-        this.posX = 50;
-        this.posY = 400;
-        this.tickIncrements;
+        this.title;
+        this.titleFontSize;
+
+        this.chartWidth;
+        this.chartHeight;
+        this.spacing;
+        this.margin;
+        this.numTicks;
+        this.posX;
+        this.posY;
+        this.numPlaces;
+        this.showValues;
+        this.showLabels;
+        this.rotateLabels;
+
+
         this.maxValue;
-        this.numPlaces = 0;
+        
         this.tickSpacing;
         this.barWidth;
         this.availableWidth;
 
-        this.showValues = true;
-        this.showLabels = true;
-        this.rotateLabels = true;
+        
 
         this.colors = [color('#ffe066'), color('#fab666'), color('#f68f6a'), color('#f3646a')];
+       
+
+        this.tickColor;
+        this.strokeThickness;
+        this.fontSize;
+
+        this.tickIncrements;
+        this.tickColor;
+        this.strokeThickness;
+        this.fontSize;
+
 
         this.updateValues();
         this.calculateMaxValue();
     }
 
     updateValues() {
+
+        this.title = "Title";
+        this.titleFontSize = 20;
+
+
+        this.chartWidth = 300;
+        this.chartHeight = 300;
+        this.spacing = 5;
+        this.margin = 30;
+        this.numTicks = 10;
+        this.numPlaces = 0;
+
+
+        this.tickColor = 255;
+        this.strokeThickness = 1;
+        this.fontSize = 14;
+
+        //Controls
+        this.showValues = true;
+        this.showLabels = true;
+        this.rotateLabels = true;
+
+
         this.tickSpacing = this.chartHeight / this.numTicks;
         this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
         this.barWidth = this.availableWidth / this.data.length;
@@ -43,11 +83,18 @@ class BarChart {
         push()
         translate(this.posX, this.posY);
 
+        this.drawTitle();
         this.drawTicks();
         this.drawHorizontalLines();
         this.drawRects();
         this.drawAxis();
         pop()
+    }
+
+    drawTitle() {
+        fill(255);
+        textSize(this.titleFontSize);
+        text(this.title, this.chartWidth / 2, -this.chartHeight - 20)
     }
 
     scaleData(num) {
