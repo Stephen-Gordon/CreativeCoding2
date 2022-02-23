@@ -12,6 +12,12 @@ let data02 = [
     { name: "Apples", total: 118 }
 ];
 
+let data03 = [
+    { name: "Oranges", total: 100 },
+    { name: "Bananas", total: 150 },
+    { name: "Pears", total: 200 },
+    { name: "Apples", total: 250 }
+];
 
 let chart01;
 let chart02;
@@ -21,6 +27,7 @@ let chart03;
 function setup() {
     createCanvas(1200, 1200);
 
+    //Horizontal 
     chart01 = new HorBarChart(data01)
     chart01.chartWidth = 300;
     chart01.chartHeight = 300
@@ -28,6 +35,7 @@ function setup() {
     chart01.posY = 400;
     chart01.updateValues();
 
+    //regular
     chart02 = new BarChart(data02)
     chart02.chartWidth = 300;
     chart02.chartHeight = 300
@@ -35,10 +43,10 @@ function setup() {
     chart02.posY = 400;
     chart02.updateValues();
 
-
-    chart03 = new StackedChart(data02)
+    //Stacked
+    chart03 = new StackedChart(data03)
     chart03.chartWidth = 300;
-    chart03.chartHeight = 300
+    chart03.chartHeight = 300;
     chart03.posX = 100;
     chart03.posY = 800;
     chart03.updateValues();

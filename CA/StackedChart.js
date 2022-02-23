@@ -2,25 +2,30 @@ class StackedChart {
     constructor(_data) {
         this.data = _data;
 
-        this.chartWidth = 300;
-        this.chartHeight = 300;
-        this.spacing = 5;
-        this.margin = 30;
-        this.numTicks = 10;
-        this.posX = 50;
-        this.posY = 400;
+       /*  this.chartWidth = 300;
+        this.chartHeight = 300; */
+        this.spacing;
+        this.margin; 
+        this.numTicks; 
+        this.posX;
+        this.posY;
         this.tickIncrements;
         this.maxValue;
-        this.numPlaces = 0;
+        this.numPlaces;
         this.tickSpacing;
         this.barWidth;
         this.availableWidth;
 
-        this.showValues = true;
-        this.showLabels = true;
-        this.rotateLabels = true;
+        this.showValues;
+        this.showLabels;
+        this.rotateLabels;
 
         this.colors = [color('#ffe066'), color('#fab666'), color('#f68f6a'), color('#f3646a')];
+
+
+        this.barHeight;
+        this.availableHeight;
+
 
         this.updateValues();
         this.calculateMaxValue();
@@ -30,10 +35,26 @@ class StackedChart {
         this.tickSpacing = this.chartHeight / this.numTicks;
         this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
         this.barWidth = this.availableWidth / this.data.length;
+
+        this.barHeight = this.availableHeight / this.data.length;
+        this.availableHeight = this.chartHeight - (this.margin * 2) - (this.data.length - 1);
+
+        this.spacing = 5;
+        this.margin = 30;
+        this.numTicks = 10;
+        /* this.posX = 50;
+        this.posY = 400; */
+        this.numPlaces = 0;
+
+        this.showValues = true;
+        this.showLabels = true;
+        this.rotateLabels = true;
     }
 
     calculateMaxValue() {
-        let listValues = this.data.map(function(x) { return x.total })
+        let listValues = this.data.map(function (x) {
+            return x.total
+        })
         this.maxValue = max(listValues);
         this.tickIncrements = this.maxValue / this.numTicks;
     }
@@ -96,12 +117,27 @@ class StackedChart {
         push();
         translate(this.margin, 0);
         for (let i = 0; i < this.data.length; i++) {
+
+            //Stack loop
+            for (let i = 0; i < 3; i++) {
+                let colorNumber = i % 4;
+
+
+                fill(this.colors[colorNumber]);
+                noStroke();
+                
+                //rect(0, (this.barHeight) * -i, this.barWidth, this.scaleData(-this.data[i].total));
+                rect(0, (this.barHeight) * -i, this.barWidth, -this.data[i].total);
+
+            }
+
+
             let colorNumber = i % 4;
 
             //bars
             fill(this.colors[colorNumber]);
             noStroke();
-            rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].total));
+            //rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].total));
 
             //numbers (text)
             noStroke();
@@ -109,6 +145,7 @@ class StackedChart {
             textSize(16);
             textAlign(CENTER, BOTTOM);
             text(this.data[i].total, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].total));
+
 
             //text
             if (this.showLabels) {
