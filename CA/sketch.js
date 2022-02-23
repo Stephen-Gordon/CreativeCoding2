@@ -13,10 +13,10 @@ let data02 = [
 ];
 
 let data03 = [
-    { name: "Oranges", total: 100 },
-    { name: "Bananas", total: 150 },
-    { name: "Pears", total: 200 },
-    { name: "Apples", total: 250 }
+    { name: "Oranges", values:[15,25,35,50], total: 125 },
+    { name: "Bananas", values:[30,35,40,50], total: 155 },
+    { name: "Pears", values:[35,55,70,90], total: 250 },
+    { name: "Apples", values:[25,40,50,90], total: 205 }
 ];
 
 let chart01;
