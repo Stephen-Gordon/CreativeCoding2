@@ -2,11 +2,11 @@ class StackedChart {
     constructor(_data) {
         this.data = _data;
 
-       /*  this.chartWidth = 300;
-        this.chartHeight = 300; */
+        /*  this.chartWidth = 300;
+         this.chartHeight = 300; */
         this.spacing;
-        this.margin; 
-        this.numTicks; 
+        this.margin;
+        this.numTicks;
         this.posX;
         this.posY;
         this.tickIncrements;
@@ -122,22 +122,22 @@ class StackedChart {
             //Stack loop
             push();
             for (let j = 0; j < this.data[i].values.length; j++) {
-                let colorNumber = i % 4;
+                let colorNumber = j % 4;
 
-                
+
                 fill(this.colors[colorNumber]);
                 noStroke();
-                rect((this.barWidth + this.spacing) * j, 0, this.barWidth, this.scaleData(-this.data[i].values[j]));
-                translate(0,this.scaleData(-this.data[i].values[j]))
+                rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].values[j]));
+                translate(0, this.scaleData(-this.data[i].values[j]))
             }
             pop();
 
             let colorNumber = i % 4;
 
             //bars
-            fill(this.colors[colorNumber]);
-            noStroke();
-            rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].total));
+            /* fill(this.colors[colorNumber]);
+            noStroke(); */
+            //rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].total));
 
             //numbers (text)
             noStroke();
