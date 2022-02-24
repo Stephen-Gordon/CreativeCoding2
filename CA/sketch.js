@@ -1,3 +1,34 @@
+let data = [
+
+    {country: "Switzerland", Qol: 195.27, Pol: 19.59},
+
+    {country: "Finland", Qol: 184.96, Pol: 25.07},
+
+    {country: "New Zealand", Qol: 176.81, Pol: 23.62 },
+
+    {country: "Portugal", Qol: 162.52, Pol: 30.48},
+
+    {country: "South Africa", Qol: 136.02, Pol: 56.57},
+
+    {country: "Tunisia", Qol: 114.56, Pol:70.84 },
+
+    {country: "Russia", Qol: 103.28, Pol: 61.80},
+
+    {country: "Chile", Qol: 100.15, Pol: 78.54},
+
+    {country: "Kenya", Qol: 92.54, Pol: 69.34},
+
+    {country: "Nigeria", Qol: 52.44, Pol: 88.32}
+
+];
+
+
+
+
+
+
+
+
 let data01 = [
     { name: "Oranges", total: 23 },
     { name: "Bananas", total: 34 },
@@ -19,6 +50,8 @@ let data03 = [
     { name: "Apples", values:[25,40,50,90], total: 205 }
 ];
 
+
+
 let chart01;
 let chart02;
 let chart03;
@@ -36,7 +69,7 @@ function setup() {
     chart01.updateValues();
 
     //regular
-    chart02 = new BarChart(data02)
+    chart02 = new BarChart(data)
     chart02.chartWidth = 300;
     chart02.chartHeight = 300
     chart02.posX = 600;
