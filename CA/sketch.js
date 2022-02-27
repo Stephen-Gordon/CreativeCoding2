@@ -34,7 +34,7 @@ let stackedData = [
 
     {country: "Portugal", Qol: 162, Pol: 30, Saftey: 69, values:[162,30,69], total: 261}
 
-    /* {country: "South Africa", Qol: 136, Pol: 56, Saftey: 23, values:[136,56,23], total: 215},
+    ,{country: "South Africa", Qol: 136, Pol: 56, Saftey: 23, values:[136,56,23], total: 215},
 
     {country: "Tunisia", Qol: 116, Pol:70, Saftey: 55, values:[116,70,55], total: 241 },
 
@@ -44,43 +44,25 @@ let stackedData = [
 
     {country: "Kenya", Qol: 92, Pol: 69, Saftey: 43, values:[92,69,43], total: 204},
 
-    {country: "Nigeria", Qol: 52, Pol: 88, Saftey: 36, values:[52,88,36], total: 176} */
+    {country: "Nigeria", Qol: 52, Pol: 88, Saftey: 36, values:[52,88,36], total: 176} 
 
 
+]
+
+let legend = [
+    {name: "Quality Of life", colour:'#7172ad'},
+    {name: "Pollution", colour:'#509ee3'},
+    {name: "Saftey", colour:'#ef8c8c'}
 ]
 
 
 
 
 
-
-
-let data01 = [
-    { name: "Oranges", total: 23 },
-    { name: "Bananas", total: 34 },
-    { name: "Pears", total: 23 },
-    { name: "Apples", total: 18 }
-];
-
-let data02 = [
-    { name: "Oranges", total: 223 },
-    { name: "Bananas", total: 134 },
-    { name: "Pears", total: 233 },
-    { name: "Apples", total: 118 }
-];
-
-let data03 = [
-    { name: "Oranges", values:[15,25,35,50], total: 125 },
-    { name: "Bananas", values:[30,35,40,50], total: 155 },
-    { name: "Pears", values:[35,55,70,90], total: 250 },
-    { name: "Apples", values:[25,40,50,90], total: 205 }
-];
-
-
-
 let chart01;
 let chart02;
 let chart03;
+let chart04;
 
 
 function setup() {
@@ -103,12 +85,19 @@ function setup() {
     chart02.updateValues();
 
     //Stacked
-    chart03 = new StackedChart(stackedData)
+    chart03 = new StackedChart(stackedData, legend)
     chart03.chartWidth = 300;
     chart03.chartHeight = 300;
     chart03.posX = 100;
     chart03.posY = 900;
     chart03.updateValues();
+
+    chart04 = new ScatterChart(data)
+    chart04.chartWidth = 300;
+    chart04.chartHeight = 300
+    chart04.posX = 600;
+    chart04.posY = 900;
+    chart04.updateValues();
 
 }
 
@@ -121,4 +110,6 @@ function draw() {
     chart02.render();
     chart03.updateValues();
     chart03.render();
+    chart04.updateValues();
+    chart04.render();
 }
