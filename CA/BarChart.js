@@ -5,6 +5,10 @@ class BarChart {
         this.title;
         this.titleFontSize;
 
+        this.xAxisTitle;
+        this.yAxisTitle;
+        this.axisTitleFontSize;
+
         this.chartWidth;
         this.chartHeight;
         this.spacing;
@@ -45,9 +49,13 @@ class BarChart {
 
     updateValues() {
 
-        this.title = "Title";
+        this.title = "Pollution by Country";
         this.titleFontSize = 20;
 
+        
+        this.xAxisTitle = "Countries";
+        this.yAxisTitle = "Pollution Index Score"
+        this.axisTitleFontSize = 16;
 
         this.chartWidth = 300;
         this.chartHeight = 300;
@@ -73,7 +81,7 @@ class BarChart {
     }
 
     calculateMaxValue() {
-        let listValues = this.data.map(function(x) { return x.total })
+        let listValues = this.data.map(function(x) { return x.Pol })
         this.maxValue = max(listValues);
         this.tickIncrements = this.maxValue / this.numTicks;
     }
@@ -92,9 +100,27 @@ class BarChart {
     }
 
     drawTitle() {
+        //Main Title
         fill(255);
+        textAlign(CENTER, CENTER)
         textSize(this.titleFontSize);
         text(this.title, this.chartWidth / 2, -this.chartHeight - 20)
+    
+        //X Axis Title
+        fill(255);
+        textAlign(CENTER, CENTER)
+        textSize(this.titleFontSize);
+        text(this.xAxisTitle, this.chartWidth / 2, this.chartHeight/2 - 50)
+
+        //Y Axis Title
+        push()
+        rotate(PI/-2)
+        fill(255);
+        textAlign(CENTER, CENTER)
+        textSize(this.titleFontSize);
+        text(this.yAxisTitle, this.chartWidth / 2,-50)
+        pop()
+    
     }
 
     scaleData(num) {
@@ -148,14 +174,14 @@ class BarChart {
             //bars
             fill(this.colors[colorNumber]);
             noStroke();
-            rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].total));
+            rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].Pol));
 
             //numbers (text)
             noStroke();
             fill(255);
             textSize(16);
             textAlign(CENTER, BOTTOM);
-            text(this.data[i].total, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].total));
+            text(this.data[i].Pol.toFixed(this.numPlaces), ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Pol));
 
             //text
             if (this.showLabels) {
@@ -166,7 +192,7 @@ class BarChart {
                     textAlign(LEFT, CENTER);
                     translate(((this.barWidth + this.spacing) * i) + this.barWidth / 2, 10);
                     rotate(PI / 4)
-                    text(this.data[i].name, 0, 0);
+                    text(this.data[i].country, 0, 0);
                     pop()
                 } else {
 
@@ -174,7 +200,7 @@ class BarChart {
                     fill(255);
                     textSize(14);
                     textAlign(CENTER, BOTTOM);
-                    text(this.data[i].name, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, 20);
+                    text(this.data[i].country, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, 20);
                 }
             }
 

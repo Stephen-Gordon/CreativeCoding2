@@ -5,6 +5,10 @@ class HorBarChart {
         this.title;
         this.titleFontSize;
 
+        this.xAxisTitle;
+        this.yAxisTitle;
+        this.axisTitleFontSize;
+
         this.chartWidth;
         this.chartHeight;
         this.spacing;
@@ -41,6 +45,14 @@ class HorBarChart {
         this.title = "Title";
         this.titleFontSize = 20;
 
+        this.title = "Pollution by Country";
+        this.titleFontSize = 20;
+
+        
+        this.xAxisTitle = "Quality of Life Index Score";
+        this.yAxisTitle = "Countries"
+        this.axisTitleFontSize = 16;
+
         this.chartWidth = 300;
         this.chartHeight = 300;
         this.spacing = 5;
@@ -67,7 +79,7 @@ class HorBarChart {
 
     calculateMaxValue() {
         let listValues = this.data.map(function (x) {
-            return x.total
+            return x.Qol
         })
         this.maxValue = max(listValues);
         this.tickIncrements = this.maxValue / this.numTicks;
@@ -87,9 +99,27 @@ class HorBarChart {
     }
 
     drawTitle() {
+        //Main Title
         fill(255);
+        textAlign(CENTER, CENTER)
         textSize(this.titleFontSize);
         text(this.title, this.chartWidth / 2, -this.chartHeight - 20)
+    
+        //X Axis Title
+        fill(255);
+        textAlign(CENTER, CENTER)
+        textSize(this.titleFontSize);
+        text(this.xAxisTitle, this.chartWidth / 2, this.chartHeight/2 - 100)
+
+        //Y Axis Title
+        push()
+        rotate(PI/-2)
+        fill(255);
+        textAlign(CENTER, CENTER)
+        textSize(this.titleFontSize);
+        text(this.yAxisTitle, this.chartWidth / 2,-85)
+        pop()
+    
     }
 
     scaleData(num) {
@@ -145,14 +175,14 @@ class HorBarChart {
             noStroke();
 
 
-            rect(0, (this.barWidth + this.spacing) * -i, this.scaleData(this.data[i].total), -this.barWidth);
+            rect(0, (this.barWidth + this.spacing) * -i, this.scaleData(this.data[i].Qol), -this.barWidth);
 
             //numbers (text)
             noStroke();
             fill(255);
             textSize(this.fontSize);
             textAlign(RIGHT, CENTER);
-            text(this.data[i].total, this.scaleData(this.data[i].total) + 20, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2);
+            text(this.data[i].Qol.toFixed(this.numPlaces), this.scaleData(this.data[i].Qol) + 20, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2);
 
             //text
             if (this.showLabels) {
@@ -163,7 +193,7 @@ class HorBarChart {
                     textAlign(RIGHT, CENTER);
                     translate(-10, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2);
                     rotate(PI / 4)
-                    text(this.data[i].name, 0, 0);
+                    text(this.data[i].country, 0, 0);
                     pop()
                 } else {
 
@@ -171,7 +201,7 @@ class HorBarChart {
                     fill(255);
                     textSize(this.fontSize);
                     textAlign(CENTER, BOTTOM);
-                    text(this.data[i].name, -30, (-(this.barWidth + this.spacing) * i) + this.barWidth / 2);
+                    text(this.data[i].country, -30, (-(this.barWidth + this.spacing) * i) + this.barWidth / 2);
                 }
             }
 
