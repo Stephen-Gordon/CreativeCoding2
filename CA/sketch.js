@@ -24,6 +24,32 @@ let data = [
 
 
 
+let stackedData = [
+    
+    {country: "Switzerland", Qol: 195.27, Pol: 19.59, values:[100,200,300], total: 125},
+
+    {country: "Finland", Qol: 184.96, Pol: 25.07, values:[100,200,300], total: 125},
+
+    {country: "New Zealand", Qol: 176.81, Pol: 23.62, values:[100,200,300], total: 125 },
+
+    {country: "Portugal", Qol: 162.52, Pol: 30.48, values:[100,200,300], total: 125},
+
+    {country: "South Africa", Qol: 136.02, Pol: 56.57, values:[100,200,300], total: 125},
+
+    {country: "Tunisia", Qol: 114.56, Pol:70.84, values:[100,200,300], total: 125 },
+
+    {country: "Russia", Qol: 103.28, Pol: 61.80, values:[100,200,300], total: 125},
+
+    {country: "Chile", Qol: 100.15, Pol: 78.54, values:[100,200,300], total: 125},
+
+    {country: "Kenya", Qol: 92.54, Pol: 69.34, values:[100,200,300], total: 125},
+
+    {country: "Nigeria", Qol: 52.44, Pol: 88.32, values:[100,200,300], total: 125}
+
+
+]
+
+
 
 
 
@@ -77,11 +103,11 @@ function setup() {
     chart02.updateValues();
 
     //Stacked
-    chart03 = new StackedChart(data03)
+    chart03 = new StackedChart(stackedData)
     chart03.chartWidth = 300;
     chart03.chartHeight = 300;
     chart03.posX = 100;
-    chart03.posY = 800;
+    chart03.posY = 900;
     chart03.updateValues();
 
 }

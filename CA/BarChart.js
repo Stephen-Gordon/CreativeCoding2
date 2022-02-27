@@ -31,7 +31,8 @@ class BarChart {
         
 
         this.colors = [color('#7172ad'), color('#509ee3'), color('#ef8c8c'), color('#9cc177')];
-       
+        
+        this.horLineColour;
         this.fontColor;
         this.lineColour;
 
@@ -61,6 +62,7 @@ class BarChart {
         this.numTicks = 10;
         this.numPlaces = 0;
 
+        this.horLineColour = 215, 219, 222;
         this.lineColour = (33, 37, 41)
         this.fontColor = (33, 37, 41);
         this.tickColor = (33, 37, 41);
@@ -142,7 +144,7 @@ class BarChart {
 
             //numbers (text)
             if (this.showValues) {
-                fill(this.tickColor);
+                fill(this.fontColor);
                 noStroke();
                 textSize(14);
                 textAlign(RIGHT, CENTER);
@@ -155,7 +157,7 @@ class BarChart {
         for (let i = 0; i <= this.numTicks; i++) {
 
             //horizontal line
-            stroke(this.lineColour);
+            stroke(this.horLineColour);
             strokeWeight(1)
             line(0, this.tickSpacing * -i, this.chartWidth, this.tickSpacing * -i);
 

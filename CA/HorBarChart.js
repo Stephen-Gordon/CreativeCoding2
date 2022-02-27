@@ -28,11 +28,15 @@ class HorBarChart {
         this.rotateLabels;
 
         this.colors = [color('#7172ad'), color('#509ee3'), color('#ef8c8c'), color('#9cc177')];
+       
+        this.fontColor;
+        this.lineColour;
+        this.vertLine;
+
 
         this.tickColor;
         this.strokeThickness;
         this.fontSize;
-
 
         this.updateValues();
         this.calculateMaxValue();
@@ -62,7 +66,11 @@ class HorBarChart {
         this.maxValue;
         this.numPlaces = 0;
 
-        this.tickColor = 255;
+        this.vertLineColour = 215, 219, 222;
+
+        this.lineColour = (33, 37, 41);
+        this.fontColor = (33, 37, 41);
+        this.tickColor = (33, 37, 41);
         this.strokeThickness = 1;
         this.fontSize = 14;
 
@@ -100,13 +108,13 @@ class HorBarChart {
 
     drawTitle() {
         //Main Title
-        fill(255);
+        fill(this.fontColor);
         textAlign(CENTER, CENTER)
         textSize(this.titleFontSize);
         text(this.title, this.chartWidth / 2, -this.chartHeight - 20)
     
         //X Axis Title
-        fill(255);
+        fill(this.fontColor);
         textAlign(CENTER, CENTER)
         textSize(this.titleFontSize);
         text(this.xAxisTitle, this.chartWidth / 2, this.chartHeight/2 - 100)
@@ -114,7 +122,7 @@ class HorBarChart {
         //Y Axis Title
         push()
         rotate(PI/-2)
-        fill(255);
+        fill(this.fontColor);
         textAlign(CENTER, CENTER)
         textSize(this.titleFontSize);
         text(this.yAxisTitle, this.chartWidth / 2,-85)
@@ -128,7 +136,7 @@ class HorBarChart {
 
     drawAxis() {
         //chart
-        stroke(255, 180);
+        stroke(this.lineColour);
         strokeWeight(this.strokeThickness);
         line(0, 0, 0, -this.chartHeight); //y
         line(0, 0, this.chartWidth, 0); //x
@@ -143,7 +151,7 @@ class HorBarChart {
 
             //numbers (text)
             if (this.showValues) {
-                fill(255, 200);
+                fill(this.fontColor);
                 noStroke();
                 textSize(this.fontSize);
                 textAlign(CENTER, CENTER);
@@ -155,8 +163,8 @@ class HorBarChart {
     drawVerticalLines() {
         for (let i = 0; i <= this.numTicks; i++) {
 
-            //horizontal line
-            stroke(255, 50);
+            //Vertical line
+            stroke(this.vertLineColour);
             strokeWeight(1)
             line(this.tickSpacing * i, 0, this.tickSpacing * i, -this.chartWidth);
 
@@ -179,7 +187,7 @@ class HorBarChart {
 
             //numbers (text)
             noStroke();
-            fill(255);
+            fill(this.fontColor)
             textSize(this.fontSize);
             textAlign(RIGHT, CENTER);
             text(this.data[i].Qol.toFixed(this.numPlaces), this.scaleData(this.data[i].Qol) + 20, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2);
@@ -193,12 +201,13 @@ class HorBarChart {
                     textAlign(RIGHT, CENTER);
                     translate(-10, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2);
                     rotate(PI / 4)
+                    fill(this.fontColor)
                     text(this.data[i].country, 0, 0);
                     pop()
                 } else {
 
                     noStroke();
-                    fill(255);
+                    fill(this.fontColor)
                     textSize(this.fontSize);
                     textAlign(CENTER, BOTTOM);
                     text(this.data[i].country, -30, (-(this.barWidth + this.spacing) * i) + this.barWidth / 2);

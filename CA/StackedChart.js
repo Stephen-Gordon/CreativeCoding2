@@ -2,8 +2,16 @@ class StackedChart {
     constructor(_data) {
         this.data = _data;
 
-        /*  this.chartWidth = 300;
-         this.chartHeight = 300; */
+        this.title;
+        this.titleFontSize;
+
+        this.xAxisTitle;
+        this.yAxisTitle;
+        this.axisTitleFontSize;
+
+        this.chartWidth;
+        this.chartHeight;
+
         this.spacing;
         this.margin;
         this.numTicks;
@@ -20,12 +28,14 @@ class StackedChart {
         this.showLabels;
         this.rotateLabels;
 
+
         this.colors = [color('#7172ad'), color('#509ee3'), color('#ef8c8c'), color('#9cc177')];
+        
+        this.horLineColour;
+        this.fontColor;
+        this.lineColour;
 
-
-        this.barHeight;
-        this.availableHeight;
-
+        
 
         this.updateValues();
         this.calculateMaxValue();
@@ -36,20 +46,31 @@ class StackedChart {
         this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
         this.barWidth = this.availableWidth / this.data.length;
 
-        this.barHeight = this.availableHeight / this.data.length;
-        //this.availableHeight = this.chartHeight - (this.margin * 2) - (this.data.length - 1);
-        this.availableHeight = this.chartHeight - (this.data.length - 1);
+        
+        this.title = "Pollution by Country";
+        this.titleFontSize = 20;
+
+        
+        this.xAxisTitle = "Countries";
+        this.yAxisTitle = "Pollution Index Score"
+        this.axisTitleFontSize = 16;
 
         this.spacing = 5;
         this.margin = 30;
         this.numTicks = 10;
-        /* this.posX = 50;
-        this.posY = 400; */
         this.numPlaces = 0;
+
+        this.horLineColour = 215, 219, 222;
+        this.lineColour = (33, 37, 41)
+        this.fontColor = (33, 37, 41);
+        this.tickColor = (33, 37, 41);
+        this.strokeThickness = 1;
+        this.fontSize = 14;
 
         this.showValues = true;
         this.showLabels = true;
         this.rotateLabels = true;
+
     }
 
     calculateMaxValue() {
@@ -65,11 +86,37 @@ class StackedChart {
         push()
         translate(this.posX, this.posY);
 
+        this.drawTitle();
         this.drawTicks();
         this.drawHorizontalLines();
         this.drawRects();
         this.drawAxis();
         pop()
+    }
+
+
+    drawTitle() {
+        //Main Title
+        fill(this.fontColor);
+        textAlign(CENTER, CENTER)
+        textSize(this.titleFontSize);
+        text(this.title, this.chartWidth / 2, -this.chartHeight - 20)
+    
+        //X Axis Title
+        fill(this.fontColor);
+        textAlign(CENTER, CENTER)
+        textSize(this.titleFontSize);
+        text(this.xAxisTitle, this.chartWidth / 2, this.chartHeight/2 - 50)
+
+        //Y Axis Title
+        push()
+        rotate(PI/-2)
+        fill(this.fontColor);
+        textAlign(CENTER, CENTER)
+        textSize(this.titleFontSize);
+        text(this.yAxisTitle, this.chartWidth / 2,-50)
+        pop()
+    
     }
 
     scaleData(num) {
@@ -78,7 +125,7 @@ class StackedChart {
 
     drawAxis() {
         //chart
-        stroke(255, 180);
+        stroke(this.lineColour);
         strokeWeight(1);
         line(0, 0, 0, -this.chartHeight); //y
         line(0, 0, this.chartWidth, 0); //x
@@ -87,13 +134,13 @@ class StackedChart {
     drawTicks() {
         for (let i = 0; i <= this.numTicks; i++) {
             //ticks
-            stroke(255);
+            stroke(this.tickColor);
             strokeWeight(1)
             line(0, this.tickSpacing * -i, -10, this.tickSpacing * -i);
 
             //numbers (text)
             if (this.showValues) {
-                fill(255, 200);
+                fill(this.fontColor);
                 noStroke();
                 textSize(14);
                 textAlign(RIGHT, CENTER);
@@ -106,7 +153,7 @@ class StackedChart {
         for (let i = 0; i <= this.numTicks; i++) {
 
             //horizontal line
-            stroke(255, 50);
+            stroke(this.horLineColour);
             strokeWeight(1)
             line(0, this.tickSpacing * -i, this.chartWidth, this.tickSpacing * -i);
 
@@ -132,12 +179,11 @@ class StackedChart {
             }
             pop();
 
-            let colorNumber = i % 4;
+          
 
             //bars
-            /* fill(this.colors[colorNumber]);
-            noStroke(); */
-            //rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].total));
+            
+            
 
             //numbers (text)
             noStroke();
@@ -156,7 +202,7 @@ class StackedChart {
                     textAlign(LEFT, CENTER);
                     translate(((this.barWidth + this.spacing) * i) + this.barWidth / 2, 10);
                     rotate(PI / 4)
-                    text(this.data[i].name, 0, 0);
+                    text(this.data[i].country, 0, 0);
                     pop()
                 } else {
 
@@ -164,7 +210,7 @@ class StackedChart {
                     fill(255);
                     textSize(14);
                     textAlign(CENTER, BOTTOM);
-                    text(this.data[i].name, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, 20);
+                    text(this.data[i].country, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, 20);
                 }
             }
 
