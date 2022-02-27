@@ -187,7 +187,7 @@ class StackedChart {
 
             //numbers (text)
             noStroke();
-            fill(255);
+            fill(this.fontColor);
             textSize(16);
             textAlign(CENTER, BOTTOM);
             text(this.data[i].total, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].total));
