@@ -30,14 +30,11 @@ class BarChart {
 
         
 
-        this.colors = [color('#ffe066'), color('#fab666'), color('#f68f6a'), color('#f3646a')];
+        this.colors = [color('#7172ad'), color('#509ee3'), color('#ef8c8c'), color('#9cc177')];
        
+        this.fontColor;
+        this.lineColour;
 
-        this.tickColor;
-        this.strokeThickness;
-        this.fontSize;
-
-        this.tickIncrements;
         this.tickColor;
         this.strokeThickness;
         this.fontSize;
@@ -64,8 +61,9 @@ class BarChart {
         this.numTicks = 10;
         this.numPlaces = 0;
 
-
-        this.tickColor = 255;
+        this.lineColour = (33, 37, 41)
+        this.fontColor = (33, 37, 41);
+        this.tickColor = (33, 37, 41);
         this.strokeThickness = 1;
         this.fontSize = 14;
 
@@ -101,13 +99,13 @@ class BarChart {
 
     drawTitle() {
         //Main Title
-        fill(255);
+        fill(this.fontColor);
         textAlign(CENTER, CENTER)
         textSize(this.titleFontSize);
         text(this.title, this.chartWidth / 2, -this.chartHeight - 20)
     
         //X Axis Title
-        fill(255);
+        fill(this.fontColor);
         textAlign(CENTER, CENTER)
         textSize(this.titleFontSize);
         text(this.xAxisTitle, this.chartWidth / 2, this.chartHeight/2 - 50)
@@ -115,7 +113,7 @@ class BarChart {
         //Y Axis Title
         push()
         rotate(PI/-2)
-        fill(255);
+        fill(this.fontColor);
         textAlign(CENTER, CENTER)
         textSize(this.titleFontSize);
         text(this.yAxisTitle, this.chartWidth / 2,-50)
@@ -129,7 +127,7 @@ class BarChart {
 
     drawAxis() {
         //chart
-        stroke(255, 180);
+        stroke(this.lineColour);
         strokeWeight(1);
         line(0, 0, 0, -this.chartHeight); //y
         line(0, 0, this.chartWidth, 0); //x
@@ -138,13 +136,13 @@ class BarChart {
     drawTicks() {
         for (let i = 0; i <= this.numTicks; i++) {
             //ticks
-            stroke(255);
+            stroke(this.tickColor);
             strokeWeight(1)
             line(0, this.tickSpacing * -i, -10, this.tickSpacing * -i);
 
             //numbers (text)
             if (this.showValues) {
-                fill(255, 200);
+                fill(this.tickColor);
                 noStroke();
                 textSize(14);
                 textAlign(RIGHT, CENTER);
@@ -157,7 +155,7 @@ class BarChart {
         for (let i = 0; i <= this.numTicks; i++) {
 
             //horizontal line
-            stroke(255, 50);
+            stroke(this.lineColour);
             strokeWeight(1)
             line(0, this.tickSpacing * -i, this.chartWidth, this.tickSpacing * -i);
 
@@ -178,7 +176,7 @@ class BarChart {
 
             //numbers (text)
             noStroke();
-            fill(255);
+            fill(this.fontColor)
             textSize(16);
             textAlign(CENTER, BOTTOM);
             text(this.data[i].Pol.toFixed(this.numPlaces), ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Pol));
@@ -192,12 +190,13 @@ class BarChart {
                     textAlign(LEFT, CENTER);
                     translate(((this.barWidth + this.spacing) * i) + this.barWidth / 2, 10);
                     rotate(PI / 4)
+                    fill(this.fontColor)
                     text(this.data[i].country, 0, 0);
                     pop()
                 } else {
 
                     noStroke();
-                    fill(255);
+                    fill(this.fontColor)
                     textSize(14);
                     textAlign(CENTER, BOTTOM);
                     text(this.data[i].country, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, 20);

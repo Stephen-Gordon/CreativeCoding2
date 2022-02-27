@@ -88,7 +88,7 @@ function setup() {
 
 
 function draw() {
-    background(50);
+    background(242, 242, 242);
     chart01.updateValues();
     chart01.render();
     chart02.updateValues();

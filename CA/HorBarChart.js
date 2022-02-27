@@ -27,7 +27,7 @@ class HorBarChart {
         this.showLabels;
         this.rotateLabels;
 
-        this.colors = [color('#ffe066'), color('#fab666'), color('#f68f6a'), color('#f3646a')];
+        this.colors = [color('#7172ad'), color('#509ee3'), color('#ef8c8c'), color('#9cc177')];
 
         this.tickColor;
         this.strokeThickness;
