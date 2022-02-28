@@ -84,7 +84,7 @@ class ScatterChart {
         let listValues = this.data.map(function(x) { return x.Pol })
         this.maxValue = max(listValues);
         this.tickIncrements = this.maxValue / this.numTicks;
-    }
+    }   
 
     render() {
 
@@ -174,16 +174,17 @@ class ScatterChart {
             //bars
             fill(this.colors[colorNumber]);
             noStroke();
+            fill(0)
+            ellipse(this.data[i].Pol * i, this.scaleData(-this.data[i].Pol), 10)
+                    //rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].Pol));
 
-            ellipse(this.data[i], this.data[i], 30)
-            //rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].Pol));
 
             //numbers (text)
             noStroke();
             fill(this.fontColor)
             textSize(16);
             textAlign(CENTER, BOTTOM);
-            text(this.data[i].Pol.toFixed(this.numPlaces), ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Pol));
+            //text(this.data[i].Pol.toFixed(this.numPlaces), ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Pol));
 
             //text
             if (this.showLabels) {
