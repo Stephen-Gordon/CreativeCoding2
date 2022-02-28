@@ -92,7 +92,7 @@ function setup() {
     chart03.posY = 900;
     chart03.updateValues();
 
-    chart04 = new ScatterChart(data)
+    chart04 = new ScatterChart(stackedData)
     chart04.chartWidth = 300;
     chart04.chartHeight = 300
     chart04.posX = 600;
