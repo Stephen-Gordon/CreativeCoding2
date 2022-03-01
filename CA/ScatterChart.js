@@ -146,8 +146,6 @@ class ScatterChart {
                 textSize(this.fontSize);
                 textAlign(CENTER, CENTER);
                 text((i * this.YtickIncrements).toFixed(this.numPlaces), this.tickSpacing * i, 30);
-                
-            
             
             }
         }
