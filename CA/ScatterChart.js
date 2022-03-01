@@ -91,9 +91,25 @@ class ScatterChart {
     
     }
 
-    scaleData(num,maxValue,length) {
-        return map(num, 0, maxValue, 0, length);
+    /* scaleXData(num) {
+        return map(num, 0, this.maxValueX, 0, this.chartWidth);
     }
+
+
+    scaleYData(num) {
+        return map(num, 0, this.maxValueY, 0, this.chartHeight);
+    } */
+
+    scaleXData(num) {
+        return map(num, this.maxValueX, 0, 0, this.chartWidth);
+    }
+
+
+    scaleYData(num) {
+        return map(num, this.maxValueY,0, this.chartHeight, 0);
+    }
+
+    
 
     drawAxis() {
         //chart
@@ -144,8 +160,6 @@ class ScatterChart {
             stroke(this.horLineColour);
             strokeWeight(1)
             line(0, this.tickSpacing * -i, this.chartWidth, this.tickSpacing * -i);
-
-
         }
     }
 
@@ -159,8 +173,8 @@ class ScatterChart {
             fill(this.colors[colorNumber]);
             noStroke();
             fill(0);
-            let ellipX = this.scaleData(this.data[i].Qol,this.maxValueX,this.chartWidth);
-            let ellipY = this.scaleData(this.data[i].Pol,this.maxValueY,this.chartHeight);
+            let ellipX = this.scaleXData(this.data[i].Qol);
+            let ellipY = this.scaleYData(this.data[i].Pol);
 
          
             ellipse(ellipX,-ellipY, 10)
