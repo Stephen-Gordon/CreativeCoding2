@@ -2,6 +2,9 @@ class HorBarChart {
     constructor(_data) {
         this.data = _data;
 
+
+        this.numOfBars = 8;
+
         this.title;
         this.titleFontSize;
 
@@ -49,7 +52,7 @@ class HorBarChart {
         this.title = "Title";
         this.titleFontSize = 20;
 
-        this.title = "Pollution by Country";
+        this.title = "Quality of Lif by Country";
         this.titleFontSize = 20;
 
         
@@ -81,13 +84,13 @@ class HorBarChart {
 
 
         this.tickSpacing = this.chartHeight / this.numTicks;
-        this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
-        this.barWidth = this.availableWidth / this.data.length;
+        this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.numOfBars - 1));
+        this.barWidth = this.availableWidth / this.numOfBars;
     }
 
     calculateMaxValue() {
         let listValues = this.data.map(function (x) {
-            return x.Qol
+            return x.QualityofLifeIndex
         })
         this.maxValue = max(listValues);
         this.tickIncrements = this.maxValue / this.numTicks;
@@ -175,7 +178,7 @@ class HorBarChart {
     drawRects() {
         push();
         translate(0, -this.margin);
-        for (let i = 0; i < this.data.length; i++) {
+        for (let i = 0; i < this.numOfBars; i++) {
             let colorNumber = i % 4;
 
             //bars
@@ -183,14 +186,14 @@ class HorBarChart {
             noStroke();
 
 
-            rect(0, (this.barWidth + this.spacing) * -i, this.scaleData(this.data[i].Qol), -this.barWidth);
+            rect(0, (this.barWidth + this.spacing) * -i, this.scaleData(this.data[i].QualityofLifeIndex), -this.barWidth);
 
             //numbers (text)
             noStroke();
             fill(this.fontColor)
             textSize(this.fontSize);
             textAlign(RIGHT, CENTER);
-            text(this.data[i].Qol.toFixed(this.numPlaces), this.scaleData(this.data[i].Qol) + 20, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2);
+            text(this.data[i].QualityofLifeIndex, this.scaleData(this.data[i].QualityofLifeIndex) + 20, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2);
 
             //text
             if (this.showLabels) {

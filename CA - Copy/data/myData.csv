@@ -1,4 +1,4 @@
-﻿Rank,country,QualityofLifeIndex,PurchasingPowerIndex,SafetyIndex,HealthCareIndex,CostofLivingIndex,PropertyPricetoIncomeRatio,TrafficCommuteTimeIndex,PollutionIndex,ClimateIndex,PollIndex,continent,colour,,region,
+﻿Rank,Country,QualityofLifeIndex,PurchasingPowerIndex,SafetyIndex,HealthCareIndex,CostofLivingIndex,PropertyPricetoIncomeRatio,TrafficCommuteTimeIndex,PollutionIndex,ClimateIndex,PollIndex,continent,colour,,region,
 1,Switzerland,195.27,118.44,78.32,74.85,123.35,8.29,28.5,19.59,80.21,51.05,europe,#7172ad,,europe,#7172ad
 2,Denmark,192.36,99.45,73.44,80.07,84.12,6.78,28.52,20.97,81.8,47.69,europe,#7172ad,,america,#509ee3
 3,Netherlands,185.38,87.99,72.12,75.56,75.66,7.15,27.4,25.07,87.11,39.89,europe,#7172ad,,asia,#ef8c8c

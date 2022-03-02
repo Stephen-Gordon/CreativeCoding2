@@ -68,14 +68,14 @@ function setup() {
     createCanvas(1200, 1200);
     generateData()
     //Horizontal 
-     chart01 = new HorBarChart(dataAll)
+     chart01 = new HorBarChart(data)
      chart01.chartWidth = 300;
      chart01.chartHeight = 300
      chart01.posX = 100;
      chart01.posY = 400;
      chart01.updateValues()
     //regular
-     chart02 = new BarChart(dataAll)
+     chart02 = new BarChart(data)
      chart02.chartWidth = 300;
      chart02.chartHeight = 300
      chart02.posX = 600;
