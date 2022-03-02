@@ -45,13 +45,13 @@ class ScatterChart {
         this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
         this.barWidth = this.availableWidth / this.data.length;
 
-        let listValues = this.data.map(function(x) { return x.Pol })
-        this.maxValueY = max(listValues);
-        this.tickIncrements = this.maxValueY / this.numTicks;
+        let listValuesY = this.data.map(function(x) { return x.PollIndex })
+        this.maxValueY = max(listValuesY);
+        this.tickIncrementsY = this.maxValueY / this.numTicks;
 
-        let listValues2 = this.data.map(function(x) { return x.Qol })
-        this.maxValueX = max(listValues2);
-        this.YtickIncrements = this.maxValueX / this.numTicks;
+        let listValuesX = this.data.map(function(x) { return x.QualityofLifeIndex})
+        this.maxValueX = max(listValuesX);
+        this.tickIncrementsX = this.maxValueX / this.numTicks;
     } 
 
     render() {
@@ -101,7 +101,7 @@ class ScatterChart {
     } */
 
     scaleXData(num) {
-        return map(num, this.maxValueX, 0, 0, this.chartWidth);
+        return map(num, this.maxValueX, 0,  this.chartWidth,0);
     }
 
 
@@ -137,7 +137,7 @@ class ScatterChart {
                 noStroke();
                 textSize(14);
                 textAlign(RIGHT, CENTER);
-                text((i * this.tickIncrements).toFixed(this.numPlaces), -15, this.tickSpacing * -i);
+                text((i * this.tickIncrementsX).toFixed(this.numPlaces), -15, this.tickSpacing * -i);
             
 
                 //X AXIS TICKS
@@ -145,7 +145,7 @@ class ScatterChart {
                 noStroke();
                 textSize(this.fontSize);
                 textAlign(CENTER, CENTER);
-                text((i * this.YtickIncrements).toFixed(this.numPlaces), this.tickSpacing * i, 30);
+                text((i * this.tickIncrementsY).toFixed(this.numPlaces), this.tickSpacing * i, 30);
             
             }
         }
@@ -171,8 +171,8 @@ class ScatterChart {
             fill(this.colors[colorNumber]);
             noStroke();
             fill(0);
-            let ellipX = this.scaleXData(this.data[i].Qol);
-            let ellipY = this.scaleYData(this.data[i].Pol);
+            let ellipX = this.scaleXData(this.data[i].QualityofLifeIndex);
+            let ellipY = this.scaleYData(this.data[i].PollIndex);
 
          
             ellipse(ellipX,-ellipY, 10)
