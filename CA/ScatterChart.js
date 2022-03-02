@@ -5,7 +5,7 @@ class ScatterChart {
         this.title = "Pollution by Country";
         this.titleFontSize = 20;
 
-        
+
         this.xAxisTitle = "Quality of life";
         this.yAxisTitle = "Pollution Index Score"
         this.axisTitleFontSize = 16;
@@ -30,7 +30,7 @@ class ScatterChart {
         this.rotateLabels = true;
 
         this.colors = [color('#7172ad'), color('#509ee3'), color('#ef8c8c'), color('#9cc177')];
-        
+
         this.tickSpacing;
         this.availableWidth;
         this.barWidth;
@@ -45,14 +45,18 @@ class ScatterChart {
         this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
         this.barWidth = this.availableWidth / this.data.length;
 
-        let listValuesY = this.data.map(function(x) { return x.PollIndex })
+        let listValuesY = this.data.map(function (x) {
+            return x.PollIndex
+        })
         this.maxValueY = max(listValuesY);
         this.tickIncrementsY = this.maxValueY / this.numTicks;
 
-        let listValuesX = this.data.map(function(x) { return x.QualityofLifeIndex})
+        let listValuesX = this.data.map(function (x) {
+            return x.QualityofLifeIndex
+        })
         this.maxValueX = max(listValuesX);
         this.tickIncrementsX = this.maxValueX / this.numTicks;
-    } 
+    }
 
     render() {
 
@@ -74,22 +78,22 @@ class ScatterChart {
         textAlign(CENTER, CENTER)
         textSize(this.titleFontSize);
         text(this.title, this.chartWidth / 2, -this.chartHeight - 20)
-    
+
         //X Axis Title
         fill(this.fontColor);
         textAlign(CENTER, CENTER)
         textSize(this.titleFontSize);
-        text(this.xAxisTitle, this.chartWidth / 2, this.chartHeight/2 - 70)
+        text(this.xAxisTitle, this.chartWidth / 2, this.chartHeight / 2 - 70)
 
         //Y Axis Title
         push()
-        rotate(PI/-2)
+        rotate(PI / -2)
         fill(this.fontColor);
         textAlign(CENTER, CENTER)
         textSize(this.titleFontSize);
-        text(this.yAxisTitle, this.chartWidth / 2,-50)
+        text(this.yAxisTitle, this.chartWidth / 2, -50)
         pop()
-    
+
     }
 
     /* scaleXData(num) {
@@ -102,15 +106,15 @@ class ScatterChart {
     } */
 
     scaleXData(num) {
-        return map(num, this.maxValueX, 0,  this.chartWidth,0);
+        return map(num, this.maxValueX, 0, this.chartWidth, 0);
     }
 
 
     scaleYData(num) {
-        return map(num, this.maxValueY,0, this.chartHeight, 0);
+        return map(num, this.maxValueY, 0, this.chartHeight, 0);
     }
 
-    
+
 
     drawAxis() {
         //chart
@@ -122,7 +126,7 @@ class ScatterChart {
 
 
     drawLegend() {
-       
+
         push();
         translate(0, -this.chartHeight);
         for (let i = 0; i < this.data.length; i++) {
@@ -131,16 +135,16 @@ class ScatterChart {
                 fill(this.fontColor);
                 textSize(14);
                 textAlign(LEFT, CENTER);
-                text(this.data[i].region, this.chartWidth + this.margin+100, this.tickSpacing * i);
+                text(this.data[i].region, this.chartWidth + this.margin + 100, this.tickSpacing * i);
                 fill(this.data[i].colour)
-                ellipse(this.chartWidth + this.margin +90, this.tickSpacing * i, 10, 10)
+                ellipse(this.chartWidth + this.margin + 90, this.tickSpacing * i, 10, 10)
             }
 
-            
+
         }
         pop();
 
-        
+
     }
 
 
@@ -163,7 +167,7 @@ class ScatterChart {
                 textSize(14);
                 textAlign(RIGHT, CENTER);
                 text((i * this.tickIncrementsY).toFixed(this.numPlaces), -15, this.tickSpacing * -i);
-            
+
 
                 //X AXIS TICKS
                 fill(this.fontColor);
@@ -171,7 +175,7 @@ class ScatterChart {
                 textSize(this.fontSize);
                 textAlign(CENTER, CENTER);
                 text((i * this.tickIncrementsX).toFixed(this.numPlaces), this.tickSpacing * i, 30);
-            
+
             }
         }
     }
@@ -190,27 +194,36 @@ class ScatterChart {
         push();
         translate(this.margin, 0);
         for (let i = 0; i < this.data.length; i++) {
-            let colorNumber = i % 4;
 
-            //bars
-            fill(this.colors[colorNumber]);
+
+
             noStroke();
-            fill(0);
+            fill(this.data[i].colour)
             let ellipX = this.scaleXData(this.data[i].QualityofLifeIndex);
             let ellipY = this.scaleYData(this.data[i].PollIndex);
 
-         
-            ellipse(ellipX,-ellipY, 10)
+
+            ellipse(ellipX, -ellipY, 10)
+
+
+
+
+
+            //let colorNumber = i % 4;
+
+            //bars
+            //fill(this.colors[colorNumber]);
+
 
 
             //numbers (text)
-            noStroke();
-            fill(this.fontColor)
-            textSize(16);
-            textAlign(CENTER, BOTTOM);
+            //noStroke();
+            //fill(this.fontColor)
+            //textSize(16);
+            //textAlign(CENTER, BOTTOM);
             //text(this.data[i].Pol.toFixed(this.numPlaces), ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Pol));
 
-        
+
 
 
         }
