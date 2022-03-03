@@ -3,8 +3,7 @@ class HorBarChart {
         this.data = _data;
 
 
-        this.numOfBars = 8;
-
+        
         this.title;
         this.titleFontSize;
 
@@ -84,8 +83,8 @@ class HorBarChart {
 
 
         this.tickSpacing = this.chartHeight / this.numTicks;
-        this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.numOfBars - 1));
-        this.barWidth = this.availableWidth / this.numOfBars;
+        this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
+        this.barWidth = this.availableWidth / this.data.length;
     }
 
     calculateMaxValue() {
@@ -178,7 +177,7 @@ class HorBarChart {
     drawRects() {
         push();
         translate(0, -this.margin);
-        for (let i = 0; i < this.numOfBars; i++) {
+        for (let i = 0; i < this.data.length; i++) {
             let colorNumber = i % 4;
 
             //bars

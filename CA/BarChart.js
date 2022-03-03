@@ -3,7 +3,6 @@ class BarChart {
         this.data = _data;
 
 
-        this.numOfBars = 10;
 
         this.title;
         this.titleFontSize;
@@ -79,13 +78,13 @@ class BarChart {
 
 
         this.tickSpacing = this.chartHeight / this.numTicks;
-        this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.numOfBars - 1));
-        this.barWidth = this.availableWidth / this.numOfBars;
+        this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
+        this.barWidth = this.availableWidth / this.data.length;
     }
 
     calculateMaxValue() {
         let listValues = this.data.map(function (x) {
-            return x.Pol
+            return x.PollutionIndex
         })
         this.maxValue = max(listValues);
         this.tickIncrements = this.maxValue / this.numTicks;
@@ -179,9 +178,9 @@ class BarChart {
         beginShape();
 
 
-        for (let i = 0; i < this.numOfBars; i++) {
-            ellipse(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Pol), 10);
-            vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Pol));
+        for (let i = 0; i < this.data.length; i++) {
+            ellipse(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex), 10);
+            vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex));
 
         }
         endShape();
@@ -194,24 +193,20 @@ class BarChart {
         push();
         translate(this.margin, 0);
 
-        for (let i = 0; i < this.numOfBars; i++) {
+        for (let i = 0; i < this.data.length; i++) {
             let colorNumber = i % 4;
 
             //bars
             fill(this.colors[colorNumber]);
             noStroke();
-            rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].Pol));
+            rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].PollutionIndex));
 
             //numbers (text)
             noStroke();
             fill(this.fontColor)
-            textSize(16);
-            textAlign(CENTER, BOTTOM);
-            text(this.data[i].Pol, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Pol));
-
-
-
-
+            textSize(this.fontSize);
+            textAlign(CENTER,CENTER)
+            text(this.data[i].PollutionIndex, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex)-10);
 
 
             //text

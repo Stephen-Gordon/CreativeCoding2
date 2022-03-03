@@ -1,8 +1,11 @@
 let dataAll = [];
+let dataSmall = [];
 let table;
+let smallTable;
 
 function preload() {
     table = loadTable('data/myData.csv', 'csv', 'header');
+    smallTable = loadTable('data/myDataSmall.csv', 'csv', 'header');
 }
 
 function generateData() {
@@ -10,7 +13,9 @@ function generateData() {
         dataAll.push(table.rows[r].obj)
     }
 
-     for (let i = 0; i < dataAll.length; i++) {
-        dataAll[i].legendColour = int(dataAll[i].legendColour)
-     }
+    for (let r = 0; r < smallTable.getRowCount(); r++) {
+        dataSmall.push(table.rows[r].obj)
+    }
+
+     
 }
