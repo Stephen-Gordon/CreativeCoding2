@@ -88,6 +88,7 @@ function setup() {
      chart03.posX = 100;
      chart03.posY = 900;
      chart03.updateValues()
+     //scatter
      chart04 = new ScatterChart(dataAll)
      chart04.chartWidth = 300;
      chart04.chartHeight = 300

@@ -3,50 +3,8 @@ class StackedChart {
         this.data = _data;
         this.legend = _legend;
 
-        this.title;
-        this.titleFontSize;
 
-        this.xAxisTitle;
-        this.yAxisTitle;
-        this.axisTitleFontSize;
-
-        this.chartWidth;
-        this.chartHeight;
-
-        this.spacing;
-        this.margin;
-        this.numTicks;
-        this.posX;
-        this.posY;
-        this.tickIncrements;
-        this.maxValue;
-        this.numPlaces;
-        this.tickSpacing;
-        this.barWidth;
-        this.availableWidth;
-
-        this.showValues;
-        this.showLabels;
-        this.rotateLabels;
-
-
-        this.colors = [color('#7172ad'), color('#509ee3'), color('#ef8c8c'), color('#9cc177')];
-
-        this.horLineColour;
-        this.fontColor;
-        this.lineColour;
-
-
-
-        this.updateValues();
-        this.calculateMaxValue();
-    }
-
-    updateValues() {
-        this.tickSpacing = this.chartHeight / this.numTicks;
-        this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
-        this.barWidth = this.availableWidth / this.data.length;
-
+        this.values;
 
         this.title = "Pollution by Country";
         this.titleFontSize = 20;
@@ -56,6 +14,8 @@ class StackedChart {
         this.yAxisTitle = "Pollution Index Score"
         this.axisTitleFontSize = 16;
 
+        this.chartWidth;
+        this.chartHeight;
 
 
         this.spacing = 5;
@@ -63,19 +23,39 @@ class StackedChart {
         this.numTicks = 10;
         this.numPlaces = 0;
 
-        this.horLineColour = 215, 219, 222;
-        this.lineColour = (33, 37, 41)
-        this.fontColor = (33, 37, 41);
-        this.tickColor = (33, 37, 41);
-        this.strokeThickness = 1;
-        this.fontSize = 14;
+        this.posX;
+        this.posY;
+        this.tickIncrements;
+        this.maxValue;
+
+        this.tickSpacing;
+        this.barWidth;
+        this.availableWidth;
+
 
         this.showValues = true;
         this.showLabels = true;
         this.rotateLabels = true;
 
 
+        this.colors = [color('#7172ad'), color('#509ee3'), color('#ef8c8c'), color('#9cc177')];
 
+        this.horLineColour = 215, 219, 222;
+        this.lineColour = (33, 37, 41)
+        this.fontColor = (33, 37, 41);
+
+        this.tickColor = (33, 37, 41);
+        this.strokeThickness = 1;
+        this.fontSize = 14;
+
+        this.updateValues();
+        this.calculateMaxValue();
+    }
+
+    updateValues() {
+        this.tickSpacing = this.chartHeight / this.numTicks;
+        this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
+        this.barWidth = this.availableWidth / this.data.length;
 
 
 
@@ -105,7 +85,7 @@ class StackedChart {
 
 
     drawLegend() {
-       
+
         push();
         translate(0, -this.chartHeight);
         for (let i = 0; i < this.legend.length; i++) {
@@ -115,11 +95,11 @@ class StackedChart {
             textAlign(LEFT, CENTER);
             text(this.legend[i].name, this.chartWidth + this.margin, this.tickSpacing * i);
             fill(this.legend[i].colour)
-            ellipse(this.chartWidth + this.margin -10, this.tickSpacing * i, 10, 10)
+            ellipse(this.chartWidth + this.margin - 10, this.tickSpacing * i, 10, 10)
         }
         pop();
 
-        
+
     }
 
 
@@ -199,17 +179,22 @@ class StackedChart {
             for (let j = 0; j < this.data[i].values.length; j++) {
                 let colorNumber = j % 4;
 
-
+                //this.values =  [this.data.QualityofLifeIndex, PollutionIndex, SafetyIndex]
                 fill(this.colors[colorNumber]);
                 noStroke();
                 rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].values[j]));
                 translate(0, this.scaleData(-this.data[i].values[j]))
+
+
+                
             }
             pop();
 
-
+            
 
             //bars
+
+
 
 
 
@@ -219,6 +204,8 @@ class StackedChart {
             textSize(16);
             textAlign(CENTER, BOTTOM);
             text(this.data[i].total, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].total));
+
+
 
 
             //text

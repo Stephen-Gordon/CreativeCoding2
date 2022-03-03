@@ -10,7 +10,7 @@ function generateData() {
         dataAll.push(table.rows[r].obj)
     }
 
-    // for (let i = 0; i < data03.length; i++) {
-    //     data03[i].Value = int(data03[i].Value)
-    // }
+     for (let i = 0; i < dataAll.length; i++) {
+        dataAll[i].legendColour = int(dataAll[i].legendColour)
+     }
 }

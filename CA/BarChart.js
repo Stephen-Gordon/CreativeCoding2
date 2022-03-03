@@ -3,7 +3,7 @@ class BarChart {
         this.data = _data;
 
 
-        this.numOfBars = 2;
+        this.numOfBars = 20;
 
         this.title;
         this.titleFontSize;
@@ -26,15 +26,15 @@ class BarChart {
 
 
         this.maxValue;
-        
+
         this.tickSpacing;
         this.barWidth;
         this.availableWidth;
 
-        
+
 
         this.colors = [color('#7172ad'), color('#509ee3'), color('#ef8c8c'), color('#9cc177')];
-        
+
         this.horLineColour;
         this.fontColor;
         this.lineColour;
@@ -45,7 +45,7 @@ class BarChart {
 
 
         this.updateValues();
-        this.calculateMaxValue();
+        this.calculateMaxValue();   
     }
 
     updateValues() {
@@ -53,7 +53,7 @@ class BarChart {
         this.title = "Pollution by Country";
         this.titleFontSize = 20;
 
-        
+
         this.xAxisTitle = "Countries";
         this.yAxisTitle = "Pollution Index Score"
         this.axisTitleFontSize = 16;
@@ -84,7 +84,9 @@ class BarChart {
     }
 
     calculateMaxValue() {
-        let listValues = this.data.map(function(x) { return x.PollutionIndex })
+        let listValues = this.data.map(function (x) {
+            return x.PollutionIndex
+        })
         this.maxValue = max(listValues);
         this.tickIncrements = this.maxValue / this.numTicks;
     }
@@ -99,6 +101,7 @@ class BarChart {
         this.drawHorizontalLines();
         this.drawRects();
         this.drawAxis();
+        this.drawMovingLine()
         pop()
     }
 
@@ -108,22 +111,22 @@ class BarChart {
         textAlign(CENTER, CENTER)
         textSize(this.titleFontSize);
         text(this.title, this.chartWidth / 2, -this.chartHeight - 20)
-    
+
         //X Axis Title
         fill(this.fontColor);
         textAlign(CENTER, CENTER)
         textSize(this.titleFontSize);
-        text(this.xAxisTitle, this.chartWidth / 2, this.chartHeight/2 - 50)
+        text(this.xAxisTitle, this.chartWidth / 2, this.chartHeight / 2 - 50)
 
         //Y Axis Title
         push()
-        rotate(PI/-2)
+        rotate(PI / -2)
         fill(this.fontColor);
         textAlign(CENTER, CENTER)
         textSize(this.titleFontSize);
-        text(this.yAxisTitle, this.chartWidth / 2,-50)
+        text(this.yAxisTitle, this.chartWidth / 2, -50)
         pop()
-    
+
     }
 
     scaleData(num) {
@@ -163,14 +166,34 @@ class BarChart {
             stroke(this.horLineColour);
             strokeWeight(1)
             line(0, this.tickSpacing * -i, this.chartWidth, this.tickSpacing * -i);
-
-
         }
     }
+
+
+    drawMovingLine() {
+        push();
+        translate(this.margin, 0);
+        noFill()
+        stroke(0)
+        strokeWeight(1)
+        beginShape();
+
+
+        for (let i = 0; i < this.numOfBars; i++) {
+            ellipse(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex), 10);
+            vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex));
+
+        }
+        endShape();
+        pop();
+    }
+
+
 
     drawRects() {
         push();
         translate(this.margin, 0);
+
         for (let i = 0; i < this.numOfBars; i++) {
             let colorNumber = i % 4;
 
@@ -185,6 +208,11 @@ class BarChart {
             textSize(16);
             textAlign(CENTER, BOTTOM);
             text(this.data[i].PollutionIndex, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex));
+
+
+
+
+
 
             //text
             if (this.showLabels) {
@@ -210,6 +238,7 @@ class BarChart {
 
 
         }
+
         pop()
     }
 }

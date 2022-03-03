@@ -136,7 +136,7 @@ class ScatterChart {
                 textSize(14);
                 textAlign(LEFT, CENTER);
                 text(this.data[i].region, this.chartWidth + this.margin + 100, this.tickSpacing * i);
-                fill(this.data[i].colour)
+                fill(this.data[i].legendColour)
                 ellipse(this.chartWidth + this.margin + 90, this.tickSpacing * i, 10, 10)
             }
 
@@ -201,9 +201,11 @@ class ScatterChart {
             fill(this.data[i].colour)
             let ellipX = this.scaleXData(this.data[i].QualityofLifeIndex);
             let ellipY = this.scaleYData(this.data[i].PollIndex);
+            let ellipRadius = this.scaleYData(this.data[i].SafetyIndex);
 
+            
 
-            ellipse(ellipX, -ellipY, 10)
+            ellipse(ellipX, -ellipY, ellipRadius/20)
 
 
 
@@ -214,8 +216,7 @@ class ScatterChart {
             //bars
             //fill(this.colors[colorNumber]);
 
-
-
+            
             //numbers (text)
             //noStroke();
             //fill(this.fontColor)
