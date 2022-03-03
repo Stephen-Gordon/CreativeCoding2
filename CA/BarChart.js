@@ -3,7 +3,7 @@ class BarChart {
         this.data = _data;
 
 
-        this.numOfBars = 20;
+        this.numOfBars = 10;
 
         this.title;
         this.titleFontSize;
@@ -205,7 +205,7 @@ class BarChart {
             //numbers (text)
             noStroke();
             fill(this.fontColor)
-            textSize(16);
+            textSize(this.fontSize);
             textAlign(CENTER, BOTTOM);
             text(this.data[i].PollutionIndex, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex));
 
