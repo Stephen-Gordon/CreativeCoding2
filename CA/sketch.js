@@ -75,7 +75,7 @@ function setup() {
      chart01.posY = 400;
      chart01.updateValues()
     //regular
-     chart02 = new BarChart(dataAll)
+     chart02 = new BarChart(data)
      chart02.chartWidth = 300;
      chart02.chartHeight = 300
      chart02.posX = 600;

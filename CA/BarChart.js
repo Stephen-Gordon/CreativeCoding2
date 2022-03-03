@@ -3,7 +3,7 @@ class BarChart {
         this.data = _data;
 
 
-        this.numOfBars = 20;
+        this.numOfBars = 10;
 
         this.title;
         this.titleFontSize;
@@ -85,7 +85,7 @@ class BarChart {
 
     calculateMaxValue() {
         let listValues = this.data.map(function (x) {
-            return x.PollutionIndex
+            return x.Pol
         })
         this.maxValue = max(listValues);
         this.tickIncrements = this.maxValue / this.numTicks;
@@ -180,8 +180,8 @@ class BarChart {
 
 
         for (let i = 0; i < this.numOfBars; i++) {
-            ellipse(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex), 10);
-            vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex));
+            ellipse(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Pol), 10);
+            vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Pol));
 
         }
         endShape();
@@ -200,14 +200,14 @@ class BarChart {
             //bars
             fill(this.colors[colorNumber]);
             noStroke();
-            rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].PollutionIndex));
+            rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].Pol));
 
             //numbers (text)
             noStroke();
             fill(this.fontColor)
             textSize(16);
             textAlign(CENTER, BOTTOM);
-            text(this.data[i].PollutionIndex, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex));
+            text(this.data[i].Pol, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Pol));
 
 
 
