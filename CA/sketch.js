@@ -1,4 +1,4 @@
-let data = [
+/* let data = [
 
     {country: "Switzerland", Qol: 195.27, Pol: 19.59},
 
@@ -20,7 +20,7 @@ let data = [
 
     {country: "Nigeria", Qol: 52.44, Pol: 88.32}
 
-];
+]; */
 
 
 

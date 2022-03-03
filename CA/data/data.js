@@ -14,7 +14,7 @@ function generateData() {
     }
 
     for (let r = 0; r < smallTable.getRowCount(); r++) {
-        dataSmall.push(table.rows[r].obj)
+        dataSmall.push(smallTable.rows[r].obj)
     }
 
      
