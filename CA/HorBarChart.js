@@ -1,7 +1,8 @@
 class HorBarChart {
     constructor(_data) {
         this.data = _data;
-        
+        this.numOfBars;
+
 
         this.title = "Quality of Lif by Country";
         this.titleFontSize = 20;
@@ -43,10 +44,14 @@ class HorBarChart {
         this.calculateMaxValue();
     }
 
+    updateGuiVals(numBars) {
+        this.numOfBars = numBars;
+    }
+
     updateValues() {
         this.tickSpacing = this.chartHeight / this.numTicks;
-        this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
-        this.barWidth = this.availableWidth / this.data.length;
+        this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * ( this.numOfBars- 1));
+        this.barWidth = this.availableWidth / this.numOfBars;
     }
 
     calculateMaxValue() {
@@ -144,7 +149,7 @@ class HorBarChart {
         stroke(0)
         strokeWeight(1)
         beginShape();
-        for (let i = 0; i < this.data.length; i++) {
+        for (let i = 0; i < this.numOfBars; i++) {
             ellipse(this.scaleData(this.data[i].QualityofLifeIndex) / 2, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2, 2);
             vertex(this.scaleData(this.data[i].QualityofLifeIndex) / 2, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2);
         }
@@ -155,7 +160,7 @@ class HorBarChart {
     drawRects() {
         push();
         translate(0, -this.margin);
-        for (let i = 0; i < this.data.length; i++) {
+        for (let i = 0; i < this.numOfBars; i++) {
             let colorNumber = i % 4;
 
             //bars

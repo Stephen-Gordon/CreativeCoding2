@@ -41,9 +41,8 @@ class BarChart {
         this.fontColor = (33, 37, 41);
         this.tickColor = (33, 37, 41);
         this.strokeThickness = 1;
-        this.fontSize = 14;
+        this.fontSize = 10;
 
-        //this.updateGuiVals();
         this.updateValues();
         this.calculateMaxValue();
     }
@@ -53,8 +52,6 @@ class BarChart {
     }
 
     updateValues() {
-        
-
         this.tickSpacing = this.chartHeight / this.numTicks;
         this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.numOfBars - 1));
         this.barWidth = this.availableWidth / this.numOfBars;
@@ -158,10 +155,9 @@ class BarChart {
         beginShape();
 
 
-        for (let i = 0; i < this.data.length; i++) {
+        for (let i = 0; i < this.numOfBars; i++) {
             ellipse(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex) / 2, 2);
             vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex) / 2);
-
         }
         endShape();
         pop();

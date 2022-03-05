@@ -1,10 +1,16 @@
 let params = {
 	numOfBars: 7,
 	numOfBarsMin: 1,
-    numOfBarsMax: 10
+    numOfBarsMax: 10,
 
-   
+    numOfBarsHor: 7,
+	numOfBarsHorMin: 1,
+    numOfBarsHorMax: 10
 }
+
+
+
+
 let visible = true;
 var gui;
 
@@ -84,13 +90,7 @@ function setup() {
      chart04.posX = 600;
      chart04.posY = 900;
      chart04.updateValues();
-
-    /*     chart04 = new ScatterChart(dataAll)
-    chart04.chartWidth = 700;
-    chart04.chartHeight = 700
-    chart04.posX = 200;
-    chart04.posY = 900;
-    chart04.updateValues(); */
+     
     gui = createGui('Change the number of bars');
 	gui.addObject(params);
     gui.addGlobals('bgColor');
@@ -104,9 +104,12 @@ function draw() {
     scale(1)
     chart01.updateValues();
     chart01.render();
+    chart01.updateGuiVals(params.numOfBarsHor);
+
     chart02.updateValues();
     chart02.render();
     chart02.updateGuiVals(params.numOfBars);
+
     chart03.updateValues();
     chart03.render();
     chart04.updateValues();

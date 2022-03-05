@@ -1,10 +1,10 @@
 class ScatterChart {
     constructor(_data) {
         this.data = _data;
-        
+
         this.title = "Pollution compared to Quality of Life";
         this.titleFontSize = 20;
-        
+
 
 
         this.xAxisTitle = "Quality of life";
@@ -36,7 +36,8 @@ class ScatterChart {
             color(239, 140, 140, 150),
             color(156, 193, 119, 150),
             color(217, 85, 85, 150),
-            color(217,151,85, 150)];
+            color(217, 151, 85, 150)
+        ];
 
         this.tickSpacing;
         this.availableWidth;
@@ -147,11 +148,17 @@ class ScatterChart {
                 fill(this.colors[colorNumber]);
                 ellipse(this.chartWidth + this.margin + 90, this.tickSpacing * i, 10, 10)
             }
-
+            noStroke();
+            fill(this.fontColor);
+            textSize(this.fontSize);
+            textAlign(LEFT, CENTER);
+           // text("Radius Size decribes the saftey of the country", this.chartWidth + this.margin + 100, this.chartHeight);
 
         }
+        
         pop();
 
+        
 
     }
 
@@ -212,9 +219,9 @@ class ScatterChart {
             let ellipY = this.scaleYData(this.data[i].PollIndex);
             let ellipRadius = this.scaleYData(this.data[i].SafetyIndex);
 
-            
 
-            ellipse(ellipX, -ellipY, ellipRadius/15)
+
+            ellipse(ellipX, -ellipY, ellipRadius / 15)
 
 
 
@@ -225,7 +232,7 @@ class ScatterChart {
             //bars
             //fill(this.colors[colorNumber]);
 
-            
+
             //numbers (text)
             //noStroke();
             //fill(this.fontColor)
