@@ -2,7 +2,7 @@ class StackedChart {
     constructor(_data, _legend) {
         this.data = _data;
         this.legend = _legend;
-   
+
 
 
         this.values;
@@ -34,7 +34,7 @@ class StackedChart {
         this.availableWidth;
 
 
-        this.showValues = false;
+        this.showValues = true;
         this.showLabels = true;
         this.rotateLabels = true;
 
@@ -58,6 +58,7 @@ class StackedChart {
         this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
         this.barWidth = this.availableWidth / this.data.length;
 
+
     }
 
     calculateMaxValue() {
@@ -79,6 +80,8 @@ class StackedChart {
         this.drawHorizontalLines();
         this.drawRects();
         this.drawAxis();
+        this.drawMovingLine();
+
         pop()
     }
 
@@ -168,6 +171,39 @@ class StackedChart {
         }
     }
 
+
+    drawMovingLine() {
+        push();
+        translate(this.margin, 0);
+        noFill()
+        stroke(0)
+        strokeWeight(1)
+        beginShape();
+
+
+        for (let i = 0; i < this.data.length; i++) {
+
+            push();
+            for (let j = 0; j <= this.data[i].values.length; j++) {
+                //let colorNumber = j % 4;
+
+                //this.values =  [this.data.QualityofLifeIndex, PollutionIndex, SafetyIndex]
+
+                //fill(this.colors[colorNumber]);
+                ellipse(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Pol), 2);
+                vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Pol));
+                translate(0, this.scaleData(-this.data[i].values[j]))
+
+            }
+            pop();
+
+
+
+        }
+        endShape();
+        pop();
+    }
+
     drawRects() {
         push();
         translate(this.margin, 0);
@@ -179,12 +215,12 @@ class StackedChart {
                 let colorNumber = j % 4;
 
                 //this.values =  [this.data.QualityofLifeIndex, PollutionIndex, SafetyIndex]
-                
+
                 fill(this.colors[colorNumber]);
                 noStroke();
                 rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].values[j]));
                 translate(0, this.scaleData(-this.data[i].values[j]))
-                
+
             }
             pop();
 

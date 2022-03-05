@@ -103,23 +103,23 @@ class ScatterChart {
 
     }
 
-    /* scaleXData(num) {
+    scaleXData(num) {
         return map(num, 0, this.maxValueX, 0, this.chartWidth);
     }
 
 
     scaleYData(num) {
         return map(num, 0, this.maxValueY, 0, this.chartHeight);
-    } */
+    }
 
-    scaleXData(num) {
+    /* scaleXData(num) {
         return map(num, this.maxValueX, 0, this.chartWidth, 0);
     }
 
 
     scaleYData(num) {
         return map(num, this.maxValueY, 0, this.chartHeight, 0);
-    }
+    } */
 
 
 

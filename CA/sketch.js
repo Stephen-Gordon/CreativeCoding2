@@ -1,26 +1,12 @@
-/* let data = [
+let params = {
+	numOfBars: 7,
+	numOfBarsMin: 1,
+    numOfBarsMax: 10
 
-    {country: "Switzerland", Qol: 195.27, Pol: 19.59},
-
-    {country: "Finland", Qol: 184.96, Pol: 25.07},
-
-    {country: "New Zealand", Qol: 176.81, Pol: 23.62 },
-
-    {country: "Portugal", Qol: 162.52, Pol: 30.48},
-
-    {country: "South Africa", Qol: 136.02, Pol: 56.57},
-
-    {country: "Tunisia", Qol: 114.56, Pol:70.84 },
-
-    {country: "Russia", Qol: 103.28, Pol: 61.80},
-
-    {country: "Chile", Qol: 100.15, Pol: 78.54},
-
-    {country: "Kenya", Qol: 92.54, Pol: 69.34},
-
-    {country: "Nigeria", Qol: 52.44, Pol: 88.32}
-
-]; */
+   
+}
+let visible = true;
+var gui;
 
 
 
@@ -63,11 +49,6 @@ let chart02;
 let chart03;
 let chart04;
 
-//let newFont;
-
-/* function preload() {
-    newFont = loadFont('fonts/Roboto-Regular.ttf');
-  } */
 
 
 
@@ -87,7 +68,9 @@ function setup() {
      chart02.chartHeight = 300
      chart02.posX = 600;
      chart02.posY = 400;
+     chart02.updateGuiVals(params.numOfBars);
      chart02.updateValues()
+     
     //Stacked
      chart03 = new StackedChart(stackedData, legend)
      chart03.chartWidth = 300;
@@ -109,7 +92,9 @@ function setup() {
     chart04.posX = 200;
     chart04.posY = 900;
     chart04.updateValues(); */
-
+    gui = createGui('Change the number of bars');
+	gui.addObject(params);
+    gui.addGlobals('bgColor');
 
 }
 
@@ -127,3 +112,14 @@ function draw() {
     chart04.updateValues();
     chart04.render();
 }
+
+
+function keyPressed() {
+    switch(key) {
+      // type [F1] to hide / show the GUI
+      case 'p':
+        visible = !visible;
+        if(visible) gui.show(); else gui.hide();
+        break;
+    }
+  }

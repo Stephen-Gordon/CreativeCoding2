@@ -1,7 +1,7 @@
 class BarChart {
     constructor(_data) {
         this.data = _data;
-
+        this.numOfBars;
 
         this.title = "Pollution by Country";
         this.titleFontSize = 20;
@@ -16,10 +16,10 @@ class BarChart {
         this.margin = 30;
         this.numTicks = 10;
         this.numPlaces = 0;
-        
+
         this.posX;
         this.posY;
-       
+
         //Controls
         this.showValues = true;
         this.showLabels = true;
@@ -42,17 +42,22 @@ class BarChart {
         this.tickColor = (33, 37, 41);
         this.strokeThickness = 1;
         this.fontSize = 14;
-        
 
+        this.updateGuiVals();
         this.updateValues();
-        this.calculateMaxValue();   
+        this.calculateMaxValue();
+    }
+
+    updateGuiVals(numBars) {
+        this.numOfBars = numBars;
     }
 
     updateValues() {
+        
 
         this.tickSpacing = this.chartHeight / this.numTicks;
-        this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
-        this.barWidth = this.availableWidth / this.data.length;
+        this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.numOfBars - 1));
+        this.barWidth = this.availableWidth / this.numOfBars;
     }
 
     calculateMaxValue() {
@@ -131,6 +136,8 @@ class BarChart {
         }
     }
 
+
+
     drawHorizontalLines() {
         for (let i = 0; i <= this.numTicks; i++) {
 
@@ -152,8 +159,8 @@ class BarChart {
 
 
         for (let i = 0; i < this.data.length; i++) {
-            ellipse(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex)/2, 2);
-            vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex)/2);
+            ellipse(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex) / 2, 2);
+            vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex) / 2);
 
         }
         endShape();
@@ -166,7 +173,7 @@ class BarChart {
         push();
         translate(this.margin, 0);
 
-        for (let i = 0; i < this.data.length; i++) {
+        for (let i = 0; i < this.numOfBars; i++) {
             let colorNumber = i % 4;
 
             //bars
@@ -178,8 +185,8 @@ class BarChart {
             noStroke();
             fill(this.fontColor)
             textSize(this.fontSize);
-            textAlign(CENTER,CENTER)
-            text(this.data[i].PollutionIndex, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex)-10);
+            textAlign(CENTER, CENTER)
+            text(this.data[i].PollutionIndex, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex) - 10);
 
 
             //text
