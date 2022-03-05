@@ -43,7 +43,7 @@ class BarChart {
         this.strokeThickness = 1;
         this.fontSize = 14;
 
-        this.updateGuiVals();
+        //this.updateGuiVals();
         this.updateValues();
         this.calculateMaxValue();
     }

@@ -68,7 +68,6 @@ function setup() {
      chart02.chartHeight = 300
      chart02.posX = 600;
      chart02.posY = 400;
-     chart02.updateGuiVals(params.numOfBars);
      chart02.updateValues()
      
     //Stacked
@@ -107,6 +106,7 @@ function draw() {
     chart01.render();
     chart02.updateValues();
     chart02.render();
+    chart02.updateGuiVals(params.numOfBars);
     chart03.updateValues();
     chart03.render();
     chart04.updateValues();
