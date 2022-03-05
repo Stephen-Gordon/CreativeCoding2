@@ -63,6 +63,13 @@ let chart02;
 let chart03;
 let chart04;
 
+//let newFont;
+
+/* function preload() {
+    newFont = loadFont('fonts/Roboto-Regular.ttf');
+  } */
+
+
 
 function setup() {
     createCanvas(1200, 1200);
@@ -109,6 +116,7 @@ function setup() {
 
 function draw() {
     background(242, 242, 242);
+    textFont(newFont)
     scale(1)
     chart01.updateValues();
     chart01.render();

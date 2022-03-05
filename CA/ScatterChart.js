@@ -1,9 +1,10 @@
 class ScatterChart {
     constructor(_data) {
         this.data = _data;
-
-        this.title = "Pollution by Country";
+        
+        this.title = "Pollution compared to Quality of Life";
         this.titleFontSize = 20;
+        
 
 
         this.xAxisTitle = "Quality of life";
@@ -29,7 +30,13 @@ class ScatterChart {
         this.showLabels = true;
         this.rotateLabels = true;
 
-        this.colors = [color('#7172ad'), color('#509ee3'), color('#ef8c8c'), color('#9cc177')];
+        this.colors = [
+            color(113, 114, 173, 150),
+            color(80, 158, 227, 150),
+            color(239, 140, 140, 150),
+            color(156, 193, 119, 150),
+            color(217, 85, 85, 150),
+            color(217,151,85, 150)];
 
         this.tickSpacing;
         this.availableWidth;
@@ -131,12 +138,13 @@ class ScatterChart {
         translate(0, -this.chartHeight);
         for (let i = 0; i < this.data.length; i++) {
             for (let j = 0; j < this.data[i].region.length; j++) {
+                let colorNumber = i % 6;
                 noStroke();
                 fill(this.fontColor);
-                textSize(14);
+                textSize(this.fontSize);
                 textAlign(LEFT, CENTER);
                 text(this.data[i].region, this.chartWidth + this.margin + 100, this.tickSpacing * i);
-                fill(this.data[i].legendColour)
+                fill(this.colors[colorNumber]);
                 ellipse(this.chartWidth + this.margin + 90, this.tickSpacing * i, 10, 10)
             }
 
@@ -164,7 +172,7 @@ class ScatterChart {
             if (this.showValues) {
                 fill(this.fontColor);
                 noStroke();
-                textSize(14);
+                textSize(this.fontSize);
                 textAlign(RIGHT, CENTER);
                 text((i * this.tickIncrementsY).toFixed(this.numPlaces), -15, this.tickSpacing * -i);
 
@@ -194,24 +202,25 @@ class ScatterChart {
         push();
         translate(this.margin, 0);
         for (let i = 0; i < this.data.length; i++) {
-
+            let colorNumber = i % 6;
 
 
             noStroke();
-            fill(this.data[i].colour)
+            //fill(this.data[i].colour)
+            fill(this.colors[colorNumber]);
             let ellipX = this.scaleXData(this.data[i].QualityofLifeIndex);
             let ellipY = this.scaleYData(this.data[i].PollIndex);
             let ellipRadius = this.scaleYData(this.data[i].SafetyIndex);
 
             
 
-            ellipse(ellipX, -ellipY, ellipRadius/20)
+            ellipse(ellipX, -ellipY, ellipRadius/15)
 
 
 
 
 
-            //let colorNumber = i % 4;
+            //let colorNumber = i % 6;
 
             //bars
             //fill(this.colors[colorNumber]);

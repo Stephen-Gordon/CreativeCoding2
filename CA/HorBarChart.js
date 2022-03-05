@@ -1,63 +1,17 @@
 class HorBarChart {
     constructor(_data) {
         this.data = _data;
-
-
         
-        this.title;
-        this.titleFontSize;
-
-        this.xAxisTitle;
-        this.yAxisTitle;
-        this.axisTitleFontSize;
-
-        this.chartWidth;
-        this.chartHeight;
-        this.spacing;
-        this.margin;
-        this.numTicks;
-        this.posX;
-        this.posY;
-        this.tickIncrements;
-        this.maxValue;
-        this.numPlaces
-        this.tickSpacing;
-        this.barWidth;
-        this.availableWidth;
-
-        this.showValues;
-        this.showLabels;
-        this.rotateLabels;
-
-        this.colors = [color('#7172ad'), color('#509ee3'), color('#ef8c8c'), color('#9cc177')];
-       
-        this.fontColor;
-        this.lineColour;
-        this.vertLine;
-
-
-        this.tickColor;
-        this.strokeThickness;
-        this.fontSize;
-
-        this.updateValues();
-        this.calculateMaxValue();
-    }
-
-    updateValues() {
-
-     
-
-        this.title = "Title";
-        this.titleFontSize = 20;
 
         this.title = "Quality of Lif by Country";
         this.titleFontSize = 20;
 
-        
+
+
         this.xAxisTitle = "Quality of Life Index Score";
         this.yAxisTitle = "Countries"
         this.axisTitleFontSize = 16;
+
 
         this.chartWidth = 300;
         this.chartHeight = 300;
@@ -68,20 +22,28 @@ class HorBarChart {
         this.maxValue;
         this.numPlaces = 0;
 
-        this.vertLineColour = 215, 219, 222;
-
-        this.lineColour = (33, 37, 41);
-        this.fontColor = (33, 37, 41);
-        this.tickColor = (33, 37, 41);
-        this.strokeThickness = 1;
-        this.fontSize = 14;
+        this.tickSpacing;
+        this.barWidth;
+        this.availableWidth;
 
         //Controls
         this.showValues = true;
         this.showLabels = true;
         this.rotateLabels = true;
+        this.colors = [color('#7172ad'), color('#509ee3'), color('#ef8c8c'), color('#9cc177')];
+        this.lineColour = (33, 37, 41);
+        this.fontColor = (33, 37, 41);
+        this.tickColor = (33, 37, 41);
+        this.strokeThickness = 1;
+        this.fontSize = 14;
+        this.vertLineColour = 215, 219, 222;
 
 
+        this.updateValues();
+        this.calculateMaxValue();
+    }
+
+    updateValues() {
         this.tickSpacing = this.chartHeight / this.numTicks;
         this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
         this.barWidth = this.availableWidth / this.data.length;
@@ -115,22 +77,22 @@ class HorBarChart {
         textAlign(CENTER, CENTER)
         textSize(this.titleFontSize);
         text(this.title, this.chartWidth / 2, -this.chartHeight - 20)
-    
+
         //X Axis Title
         fill(this.fontColor);
         textAlign(CENTER, CENTER)
         textSize(this.titleFontSize);
-        text(this.xAxisTitle, this.chartWidth / 2, this.chartHeight/2 - 100)
+        text(this.xAxisTitle, this.chartWidth / 2, this.chartHeight / 2 - 100)
 
         //Y Axis Title
         push()
-        rotate(PI/-2)
+        rotate(PI / -2)
         fill(this.fontColor);
         textAlign(CENTER, CENTER)
         textSize(this.titleFontSize);
-        text(this.yAxisTitle, this.chartWidth / 2,-85)
+        text(this.yAxisTitle, this.chartWidth / 2, -85)
         pop()
-    
+
     }
 
     scaleData(num) {
@@ -183,8 +145,8 @@ class HorBarChart {
         strokeWeight(1)
         beginShape();
         for (let i = 0; i < this.data.length; i++) {
-            ellipse(this.scaleData(this.data[i].QualityofLifeIndex)/2, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2, 2);
-            vertex(this.scaleData(this.data[i].QualityofLifeIndex)/2, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2);
+            ellipse(this.scaleData(this.data[i].QualityofLifeIndex) / 2, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2, 2);
+            vertex(this.scaleData(this.data[i].QualityofLifeIndex) / 2, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2);
         }
         endShape();
         pop();
@@ -208,7 +170,7 @@ class HorBarChart {
             fill(this.fontColor)
             textSize(this.fontSize);
             textAlign(LEFT, CENTER);
-            text(this.data[i].QualityofLifeIndex, this.scaleData(this.data[i].QualityofLifeIndex)+5, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2);
+            text(this.data[i].QualityofLifeIndex, this.scaleData(this.data[i].QualityofLifeIndex) + 5, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2);
 
             //text
             if (this.showLabels) {

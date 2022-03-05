@@ -2,6 +2,7 @@ class StackedChart {
     constructor(_data, _legend) {
         this.data = _data;
         this.legend = _legend;
+   
 
 
         this.values;
@@ -33,7 +34,7 @@ class StackedChart {
         this.availableWidth;
 
 
-        this.showValues = true;
+        this.showValues = false;
         this.showLabels = true;
         this.rotateLabels = true;
 
@@ -56,8 +57,6 @@ class StackedChart {
         this.tickSpacing = this.chartHeight / this.numTicks;
         this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
         this.barWidth = this.availableWidth / this.data.length;
-
-
 
     }
 
@@ -150,7 +149,7 @@ class StackedChart {
             if (this.showValues) {
                 fill(this.fontColor);
                 noStroke();
-                textSize(14);
+                textSize(this.fontSize);
                 textAlign(RIGHT, CENTER);
                 text((i * this.tickIncrements).toFixed(this.numPlaces), -15, this.tickSpacing * -i);
             }
@@ -189,18 +188,10 @@ class StackedChart {
             }
             pop();
 
-            
-
-            //bars
-
-
-
-
-
             //numbers (text)
             noStroke();
             fill(this.fontColor);
-            textSize(16);
+            textSize(this.fontSize);
             textAlign(CENTER, BOTTOM);
             text(this.data[i].total, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].total));
 
@@ -212,7 +203,7 @@ class StackedChart {
                 if (this.rotateLabels) {
                     push()
                     noStroke();
-                    textSize(14);
+                    textSize(this.fontSize);
                     textAlign(LEFT, CENTER);
                     translate(((this.barWidth + this.spacing) * i) + this.barWidth / 2, 10);
                     rotate(PI / 4)
@@ -222,7 +213,7 @@ class StackedChart {
 
                     noStroke();
                     fill(255);
-                    textSize(14);
+                    textSize(this.fontSize);
                     textAlign(CENTER, BOTTOM);
                     text(this.data[i].country, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, 20);
                 }

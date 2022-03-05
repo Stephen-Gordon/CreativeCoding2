@@ -2,10 +2,11 @@ let dataAll = [];
 let dataSmall = [];
 let table;
 let smallTable;
-
+let newFont;
 function preload() {
     table = loadTable('data/myData.csv', 'csv', 'header');
     smallTable = loadTable('data/myDataSmall.csv', 'csv', 'header');
+    newFont = loadFont('fonts/Roboto-Regular.ttf');
 }
 
 function generateData() {

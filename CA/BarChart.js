@@ -3,7 +3,6 @@ class BarChart {
         this.data = _data;
 
 
-
         this.title = "Pollution by Country";
         this.titleFontSize = 20;
 
@@ -20,10 +19,11 @@ class BarChart {
         
         this.posX;
         this.posY;
-        this.numPlaces;
-        this.showValues;
-        this.showLabels;
-        this.rotateLabels;
+       
+        //Controls
+        this.showValues = true;
+        this.showLabels = true;
+        this.rotateLabels = true;
 
 
         this.maxValue;
@@ -36,40 +36,19 @@ class BarChart {
 
         this.colors = [color('#7172ad'), color('#509ee3'), color('#ef8c8c'), color('#9cc177')];
 
-        this.horLineColour;
-        this.fontColor;
-        this.lineColour;
-
-        this.tickColor;
-        this.strokeThickness;
-        this.fontSize;
-
-
-        this.updateValues();
-        this.calculateMaxValue();   
-    }
-
-    updateValues() {
-
-        
-
-
-        
-
-        
-
         this.horLineColour = 215, 219, 222;
         this.lineColour = (33, 37, 41)
         this.fontColor = (33, 37, 41);
         this.tickColor = (33, 37, 41);
         this.strokeThickness = 1;
         this.fontSize = 14;
+        
 
-        //Controls
-        this.showValues = true;
-        this.showLabels = true;
-        this.rotateLabels = true;
+        this.updateValues();
+        this.calculateMaxValue();   
+    }
 
+    updateValues() {
 
         this.tickSpacing = this.chartHeight / this.numTicks;
         this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
