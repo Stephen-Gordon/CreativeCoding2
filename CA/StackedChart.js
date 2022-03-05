@@ -180,12 +180,11 @@ class StackedChart {
                 let colorNumber = j % 4;
 
                 //this.values =  [this.data.QualityofLifeIndex, PollutionIndex, SafetyIndex]
+                
                 fill(this.colors[colorNumber]);
                 noStroke();
                 rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].values[j]));
                 translate(0, this.scaleData(-this.data[i].values[j]))
-
-
                 
             }
             pop();

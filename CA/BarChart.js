@@ -4,18 +4,20 @@ class BarChart {
 
 
 
-        this.title;
-        this.titleFontSize;
+        this.title = "Pollution by Country";
+        this.titleFontSize = 20;
 
-        this.xAxisTitle;
-        this.yAxisTitle;
-        this.axisTitleFontSize;
+        this.xAxisTitle = "Countries";
+        this.yAxisTitle = "Pollution Index Score"
+        this.axisTitleFontSize = 16;
 
-        this.chartWidth;
-        this.chartHeight;
-        this.spacing;
-        this.margin;
-        this.numTicks;
+        this.chartWidth = 300;
+        this.chartHeight = 300;
+        this.spacing = 5;
+        this.margin = 30;
+        this.numTicks = 10;
+        this.numPlaces = 0;
+        
         this.posX;
         this.posY;
         this.numPlaces;
@@ -49,20 +51,12 @@ class BarChart {
 
     updateValues() {
 
-        this.title = "Pollution by Country";
-        this.titleFontSize = 20;
+        
 
 
-        this.xAxisTitle = "Countries";
-        this.yAxisTitle = "Pollution Index Score"
-        this.axisTitleFontSize = 16;
+        
 
-        this.chartWidth = 300;
-        this.chartHeight = 300;
-        this.spacing = 5;
-        this.margin = 30;
-        this.numTicks = 10;
-        this.numPlaces = 0;
+        
 
         this.horLineColour = 215, 219, 222;
         this.lineColour = (33, 37, 41)
@@ -179,8 +173,8 @@ class BarChart {
 
 
         for (let i = 0; i < this.data.length; i++) {
-            ellipse(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex), 10);
-            vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex));
+            ellipse(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex)/2, 2);
+            vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex)/2);
 
         }
         endShape();

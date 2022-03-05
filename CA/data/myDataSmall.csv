@@ -1,5 +1,5 @@
-﻿Rank,country,QualityofLifeIndex,PollutionIndex,SafetyIndex,total,,PollIndex,PurchasingPowerIndex,HealthCareIndex,CostofLivingIndex,PropertyPricetoIncomeRatio,TrafficCommuteTimeIndex,ClimateIndex,,continent,colour,,region,legendColour
-1,Switzerland,195.27,19.59,78.32,293.18,,51.05,118.44,74.85,123.35,8.29,28.5,80.21,,europe,#7172ad,,europe,#7172ad
+﻿Rank,country,QualityofLifeIndex,PollutionIndex,SafetyIndex,total,values,PollIndex,PurchasingPowerIndex,HealthCareIndex,CostofLivingIndex,PropertyPricetoIncomeRatio,TrafficCommuteTimeIndex,ClimateIndex,,continent,colour,,region,legendColour
+1,Switzerland,195.27,19.59,78.32,293.18,195.27 19.59,51.05,118.44,74.85,123.35,8.29,28.5,80.21,,europe,#7172ad,,europe,#7172ad
 2,Denmark,192.36,20.97,73.44,286.77,,47.69,99.45,80.07,84.12,6.78,28.52,81.8,,europe,#7172ad,,america,#509ee3
 13,Oman,173.68,37.21,80.01,290.9,,26.87,84.24,58.23,49.42,4.59,22.76,67.22,,middleEast,#FF0000,,asia,#ef8c8c
 23,Canada,160.38,28.76,57.05,246.19,,34.77,87.98,71.31,70.22,7.52,33.61,55.98,,america,#509ee3,,africa,#9cc177

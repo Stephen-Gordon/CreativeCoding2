@@ -105,6 +105,7 @@ class HorBarChart {
         this.drawVerticalLines();
         this.drawRects();
         this.drawAxis();
+        this.drawMovingLine();
         pop()
     }
 
@@ -174,6 +175,21 @@ class HorBarChart {
         }
     }
 
+    drawMovingLine() {
+        push();
+        translate(0, -this.margin);
+        noFill()
+        stroke(0)
+        strokeWeight(1)
+        beginShape();
+        for (let i = 0; i < this.data.length; i++) {
+            ellipse(this.scaleData(this.data[i].QualityofLifeIndex)/2, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2, 2);
+            vertex(this.scaleData(this.data[i].QualityofLifeIndex)/2, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2);
+        }
+        endShape();
+        pop();
+    }
+
     drawRects() {
         push();
         translate(0, -this.margin);
@@ -191,8 +207,8 @@ class HorBarChart {
             noStroke();
             fill(this.fontColor)
             textSize(this.fontSize);
-            textAlign(RIGHT, CENTER);
-            text(this.data[i].QualityofLifeIndex, this.scaleData(this.data[i].QualityofLifeIndex) + 20, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2);
+            textAlign(LEFT, CENTER);
+            text(this.data[i].QualityofLifeIndex, this.scaleData(this.data[i].QualityofLifeIndex)+5, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2);
 
             //text
             if (this.showLabels) {
