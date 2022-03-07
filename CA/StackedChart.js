@@ -37,6 +37,7 @@ class StackedChart {
         this.showValues = true;
         this.showLabels = true;
         this.rotateLabels = true;
+        this.drawTrendLine = true;
 
 
         this.colors = [color('#7172ad'), color('#509ee3'), color('#ef8c8c'), color('#9cc177')];
@@ -173,35 +174,32 @@ class StackedChart {
 
 
     drawMovingLine() {
-        push();
-        translate(this.margin, 0);
-        noFill()
-        stroke(0)
-        strokeWeight(1)
-        beginShape();
-
-
-        for (let i = 0; i < this.data.length; i++) {
-
+        if (this.drawTrendLine) {
             push();
-            for (let j = 0; j < this.data[i].values.length; j++) {
-                //let colorNumber = j % 4;
+            translate(this.margin, 0);
+            noFill()
+            stroke(0)
+            strokeWeight(1)
+            beginShape();
 
-                //this.values =  [this.data.QualityofLifeIndex, PollutionIndex, SafetyIndex]
 
-                //fill(this.colors[colorNumber]);
-               // ellipse(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Qol), 2);
-                vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Qol));
-                translate(0, this.scaleData(-this.data[i].values[j]))
+            for (let i = 0; i < this.data.length; i++) {
+
+                push();
+                for (let j = 0; j < this.data[i].values.length; j++) {
+                   
+                    vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Qol));
+                    translate(0, this.scaleData(-this.data[i].values[j]))
+
+                }
+                pop();
+
+
 
             }
+            endShape();
             pop();
-
-
-
         }
-        endShape();
-        pop();
     }
 
     drawRects() {

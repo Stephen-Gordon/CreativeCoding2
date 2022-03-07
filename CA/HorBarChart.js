@@ -31,7 +31,20 @@ class HorBarChart {
         this.showValues = true;
         this.showLabels = true;
         this.rotateLabels = true;
-        this.colors = [color('#7172ad'), color('#509ee3'), color('#ef8c8c'), color('#9cc177')];
+        this.drawTrendLine = true;
+
+        this.colors = [
+            color(113, 114, 173),
+            color(80, 158, 227),
+            color(239, 140, 140),
+            color(156, 193, 119),
+            color(217, 85, 85),
+            color(217, 151, 85),
+            color(181, 72, 36),
+            color(242, 125, 22),
+            color(236, 181, 82),
+            color(50, 148, 218)
+        ];
         this.lineColour = (33, 37, 41);
         this.fontColor = (33, 37, 41);
         this.tickColor = (33, 37, 41);
@@ -50,7 +63,7 @@ class HorBarChart {
 
     updateValues() {
         this.tickSpacing = this.chartHeight / this.numTicks;
-        this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * ( this.numOfBars- 1));
+        this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.numOfBars - 1));
         this.barWidth = this.availableWidth / this.numOfBars;
     }
 
@@ -143,25 +156,27 @@ class HorBarChart {
     }
 
     drawMovingLine() {
-        push();
-        translate(0, -this.margin);
-        noFill()
-        stroke(0)
-        strokeWeight(1)
-        beginShape();
-        for (let i = 0; i < this.numOfBars; i++) {
-            ellipse(this.scaleData(this.data[i].QualityofLifeIndex) / 2, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2, 2);
-            vertex(this.scaleData(this.data[i].QualityofLifeIndex) / 2, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2);
+        if (this.drawTrendLine) {
+            push();
+            translate(0, -this.margin);
+            noFill()
+            stroke(0)
+            strokeWeight(1)
+            beginShape();
+            for (let i = 0; i < this.numOfBars; i++) {
+                ellipse(this.scaleData(this.data[i].QualityofLifeIndex) / 2, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2, 2);
+                vertex(this.scaleData(this.data[i].QualityofLifeIndex) / 2, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2);
+            }
+            endShape();
+            pop();
         }
-        endShape();
-        pop();
     }
 
     drawRects() {
         push();
         translate(0, -this.margin);
         for (let i = 0; i < this.numOfBars; i++) {
-            let colorNumber = i % 4;
+            let colorNumber = i % 10;
 
             //bars
             fill(this.colors[colorNumber]);

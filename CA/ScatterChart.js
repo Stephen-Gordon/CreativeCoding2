@@ -8,7 +8,7 @@ class ScatterChart {
 
 
         this.xAxisTitle = "Quality of life";
-        this.yAxisTitle = "Levels of Pollution"
+        this.yAxisTitle = "Pollution Index Score"
         this.axisTitleFontSize = 16;
 
         this.chartWidth = 300;
@@ -36,7 +36,11 @@ class ScatterChart {
             color(239, 140, 140, 150),
             color(156, 193, 119, 150),
             color(217, 85, 85, 150),
-            color(217, 151, 85, 150)
+            color(217, 151, 85, 150),
+            color(181, 72, 36, 150),
+            color(242, 125, 22, 150),
+            color(236, 181, 82, 150),
+            color(50, 148, 218, 150)
         ];
 
         this.tickSpacing;
@@ -138,13 +142,13 @@ class ScatterChart {
         push();
         translate(0, -this.chartHeight);
         for (let i = 0; i < this.data.length; i++) {
-            for (let j = 0; j < this.data[i].region.length; j++) {
-                let colorNumber = i % 6;
+            for (let j = 0; j < this.data[i].country.length; j++) {
+                let colorNumber = i % 10;
                 noStroke();
                 fill(this.fontColor);
                 textSize(this.fontSize);
                 textAlign(LEFT, CENTER);
-                text(this.data[i].region, this.chartWidth + this.margin + 100, this.tickSpacing * i);
+                text(this.data[i].country, this.chartWidth + this.margin + 100, this.tickSpacing * i);
                 fill(this.colors[colorNumber]);
                 ellipse(this.chartWidth + this.margin + 90, this.tickSpacing * i, 10, 10)
             }
@@ -209,19 +213,19 @@ class ScatterChart {
         push();
         translate(this.margin, 0);
         for (let i = 0; i < this.data.length; i++) {
-            let colorNumber = i % 6;
+            let colorNumber = i % 10;
 
 
             noStroke();
-            fill(this.data[i].colour)
-            //fill(this.colors[colorNumber]);
+            //fill(this.data[i].colour)
+            fill(this.colors[colorNumber]);
             let ellipX = this.scaleXData(this.data[i].QualityofLifeIndex);
             let ellipY = this.scaleYData(this.data[i].PollIndex);
             let ellipRadius = this.data[i].SafetyIndex;
 
 
 
-            ellipse(ellipX, -ellipY, ellipRadius /5)
+            ellipse(ellipX, -ellipY, ellipRadius /3)
 
 
 

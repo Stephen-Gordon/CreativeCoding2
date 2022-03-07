@@ -24,6 +24,7 @@ class BarChart {
         this.showValues = true;
         this.showLabels = true;
         this.rotateLabels = true;
+        this.drawTrendLine = true;
 
 
         this.maxValue;
@@ -34,7 +35,18 @@ class BarChart {
 
 
 
-        this.colors = [color('#7172ad'), color('#509ee3'), color('#ef8c8c'), color('#9cc177')];
+        this.colors = [
+            color(113, 114, 173),
+            color(80, 158, 227),
+            color(239, 140, 140),
+            color(156, 193, 119),
+            color(217, 85, 85),
+            color(217, 151, 85),
+            color(181, 72, 36),
+            color(242, 125, 22),
+            color(236, 181, 82),
+            color(50, 148, 218)
+        ];
 
         this.horLineColour = 215, 219, 222;
         this.lineColour = (33, 37, 41)
@@ -147,20 +159,23 @@ class BarChart {
 
 
     drawMovingLine() {
-        push();
-        translate(this.margin, 0);
-        noFill()
-        stroke(0)
-        strokeWeight(1)
-        beginShape();
-
-
-        for (let i = 0; i < this.numOfBars; i++) {
-            ellipse(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex) / 2, 2);
-            vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex) / 2);
+        if(this.drawTrendLine){
+            push();
+            translate(this.margin, 0);
+            noFill()
+            stroke(0)
+            strokeWeight(1)
+            beginShape();
+    
+    
+            for (let i = 0; i < this.numOfBars; i++) {
+                ellipse(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex) / 2, 2);
+                vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex) / 2);
+            }
+            endShape();
+            pop();
         }
-        endShape();
-        pop();
+        
     }
 
 
@@ -170,7 +185,7 @@ class BarChart {
         translate(this.margin, 0);
 
         for (let i = 0; i < this.numOfBars; i++) {
-            let colorNumber = i % 4;
+            let colorNumber = i % 10;
 
             //bars
             fill(this.colors[colorNumber]);

@@ -1,9 +1,9 @@
 let params = {
-	numOfBars: 7,
+	numOfBars: 10,
 	numOfBarsMin: 1,
     numOfBarsMax: 10,
 
-    numOfBarsHor: 7,
+    numOfBarsHor: 10,
 	numOfBarsHorMin: 1,
     numOfBarsHorMax: 10
 }

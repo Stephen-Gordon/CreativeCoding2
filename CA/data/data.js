@@ -17,6 +17,10 @@ function generateData() {
     for (let r = 0; r < smallTable.getRowCount(); r++) {
         dataSmall.push(smallTable.rows[r].obj)
     }
+
+    /* for (let i = 0; i < dataSmall.length; i++) {
+        dataSmall[i].colour = int(dataSmall[i].colour)
+     } */
   
     
 }
