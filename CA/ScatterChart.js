@@ -213,8 +213,8 @@ class ScatterChart {
 
 
             noStroke();
-            //fill(this.data[i].colour)
-            fill(this.colors[colorNumber]);
+            fill(this.data[i].colour)
+            //fill(this.colors[colorNumber]);
             let ellipX = this.scaleXData(this.data[i].QualityofLifeIndex);
             let ellipY = this.scaleYData(this.data[i].PollIndex);
             let ellipRadius = this.data[i].SafetyIndex;
