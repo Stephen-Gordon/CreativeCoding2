@@ -8,7 +8,7 @@ class ScatterChart {
 
 
         this.xAxisTitle = "Quality of life";
-        this.yAxisTitle = "Pollution Index Score"
+        this.yAxisTitle = "Levels of Pollution"
         this.axisTitleFontSize = 16;
 
         this.chartWidth = 300;
@@ -53,11 +53,11 @@ class ScatterChart {
         this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
         this.barWidth = this.availableWidth / this.data.length;
 
-        let listValuesY = this.data.map(function (x) {
-            return x.PollIndex
+        let listValuesY = this.data.map(function (y) {
+            return y.PollIndex
         })
         this.maxValueY = max(listValuesY);
-        this.tickIncrementsY = this.maxValueY / this.numTicks;
+        this.tickIncrementsY = this.maxValueY / this.numTicks; 
 
         let listValuesX = this.data.map(function (x) {
             return x.QualityofLifeIndex
@@ -85,7 +85,7 @@ class ScatterChart {
         fill(this.fontColor);
         textAlign(CENTER, CENTER)
         textSize(this.titleFontSize);
-        text(this.title, this.chartWidth / 2, -this.chartHeight - 20)
+        text(this.title, this.chartWidth / 2, -this.chartHeight - 50)
 
         //X Axis Title
         fill(this.fontColor);
@@ -217,11 +217,11 @@ class ScatterChart {
             fill(this.colors[colorNumber]);
             let ellipX = this.scaleXData(this.data[i].QualityofLifeIndex);
             let ellipY = this.scaleYData(this.data[i].PollIndex);
-            let ellipRadius = this.scaleYData(this.data[i].SafetyIndex);
+            let ellipRadius = this.data[i].SafetyIndex;
 
 
 
-            ellipse(ellipX, -ellipY, ellipRadius / 15)
+            ellipse(ellipX, -ellipY, ellipRadius /5)
 
 
 

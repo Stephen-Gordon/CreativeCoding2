@@ -184,14 +184,14 @@ class StackedChart {
         for (let i = 0; i < this.data.length; i++) {
 
             push();
-            for (let j = 0; j <= this.data[i].values.length; j++) {
+            for (let j = 0; j < this.data[i].values.length; j++) {
                 //let colorNumber = j % 4;
 
                 //this.values =  [this.data.QualityofLifeIndex, PollutionIndex, SafetyIndex]
 
                 //fill(this.colors[colorNumber]);
-                ellipse(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Pol), 2);
-                vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Pol));
+               // ellipse(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Qol), 2);
+                vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Qol));
                 translate(0, this.scaleData(-this.data[i].values[j]))
 
             }

@@ -4,7 +4,7 @@ class HorBarChart {
         this.numOfBars;
 
 
-        this.title = "Quality of Lif by Country";
+        this.title = "Quality of Life by Country";
         this.titleFontSize = 20;
 
 
