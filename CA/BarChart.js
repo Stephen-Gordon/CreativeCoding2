@@ -10,8 +10,8 @@ class BarChart {
         this.yAxisTitle = "Pollution Index Score"
         this.axisTitleFontSize = 16;
 
-        this.chartWidth = 300;
-        this.chartHeight = 300;
+        this.chartWidth;
+        this.chartHeight;
         this.spacing = 5;
         this.margin = 30;
         this.numTicks = 10;

@@ -9,7 +9,11 @@ let params = {
 
     numOfBarsStacked: 10,
     numOfBarsStackedMin: 1,
-    numOfBarsStackedMax: 10
+    numOfBarsStackedMax: 10,
+
+    chartWidth: 300,
+    numOfBarsStackedMin: 300,
+    numOfBarsStackedMax: 600
 }
 
 
@@ -54,10 +58,10 @@ let legend = [
 
 
 
-let chart01;
-let chart02;
-let chart03;
-let chart04;
+let qolHorChart;
+let polBarChart;
+let stackedChart;
+let scatterChart;
 
 
 
@@ -66,38 +70,39 @@ function setup() {
     createCanvas(1200, 1200);
     generateData()
     //Horizontal 
-     chart01 = new HorBarChart(dataSmall)
-     chart01.chartWidth = 300;
-     chart01.chartHeight = 300
-     chart01.posX = 100;
-     chart01.posY = 400;
-     chart01.updateValues()
+    qolHorChart = new HorBarChart(dataSmall)
+    qolHorChart.chartWidth = 300;
+    qolHorChart.chartHeight = 300
+    qolHorChart.posX = 100;
+    qolHorChart.posY = 400;
+    qolHorChart.updateValues()
     //regular
-     chart02 = new BarChart(dataSmall)
-     chart02.chartWidth = 300;
-     chart02.chartHeight = 300
-     chart02.posX = 600;
-     chart02.posY = 400;
-     chart02.updateValues()
+    polBarChart = new BarChart(dataSmall)
+    polBarChart.chartWidth = 300;
+    polBarChart.chartHeight = 300
+    polBarChart.posX = 600;
+    polBarChart.posY = 400;
+    polBarChart.updateValues()
      
     //Stacked
-     chart03 = new StackedChart(stackedData, legend)
-     chart03.chartWidth = 300;
-     chart03.chartHeight = 300;
-     chart03.posX = 100;
-     chart03.posY = 900;
-     chart03.updateValues()
-     //scatter
-     chart04 = new ScatterChart(dataSmall)
-     chart04.chartWidth = 300;
-     chart04.chartHeight = 300
-     chart04.posX = 600;
-     chart04.posY = 900;
-     chart04.updateValues();
-     
+    stackedChart = new StackedChart(stackedData, legend)
+    stackedChart.chartWidth = 300;
+    stackedChart.chartHeight = 300;
+    stackedChart.posX = 100;
+    stackedChart.posY = 1000;
+    stackedChart.updateValues()
+    //scatter
+    scatterChart = new ScatterChart(dataSmall)
+    scatterChart.chartWidth = 300;
+    scatterChart.chartHeight = 300
+    scatterChart.posX = 600;
+    scatterChart.posY = 1000;
+    scatterChart.title =   "Pollution compared to Quality of Life";
+    scatterChart.updateValues();
+    
     gui = createGui('Change the number of bars');
 	gui.addObject(params);
-    gui.addGlobals('bgColor');
+   
 
 }
 
@@ -106,20 +111,20 @@ function draw() {
     background(242, 242, 242);
     textFont(newFont)
     scale(1)
-    chart01.updateValues();
-    chart01.render();
-    chart01.updateGuiVals(params.numOfBarsHor);
+    qolHorChart.updateValues();
+    qolHorChart.render();
+    qolHorChart.updateGuiVals(params.numOfBarsHor);
 
-    chart02.updateValues();
-    chart02.render();
-    chart02.updateGuiVals(params.numOfBars);
+    polBarChart.updateValues();
+    polBarChart.render();
+    polBarChart.updateGuiVals(params.numOfBars);
 
-    chart03.updateValues();
-    chart03.render();
-    chart03.updateGuiVals(params.numOfBarsStacked);
+    stackedChart.updateValues();
+    stackedChart.render();
+    stackedChart.updateGuiVals(params.numOfBarsStacked);
 
-    chart04.updateValues();
-    chart04.render();
+    scatterChart.updateValues();
+    scatterChart.render();
 }
 
 

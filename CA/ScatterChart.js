@@ -2,7 +2,7 @@ class ScatterChart {
     constructor(_data) {
         this.data = _data;
 
-        this.title = "Pollution compared to Quality of Life";
+        this.title
         this.titleFontSize = 20;
 
 
@@ -11,8 +11,8 @@ class ScatterChart {
         this.yAxisTitle = "Pollution Index Score"
         this.axisTitleFontSize = 16;
 
-        this.chartWidth = 300;
-        this.chartHeight = 300;
+        this.chartWidth;
+        this.chartHeight;
         this.spacing = 5;
         this.margin = 0;
         this.numTicks = 10;

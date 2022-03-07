@@ -49,7 +49,7 @@ class HorBarChart {
         this.fontColor = (33, 37, 41);
         this.tickColor = (33, 37, 41);
         this.strokeThickness = 1;
-        this.fontSize = 14;
+        this.fontSize = 10;
         this.vertLineColour = 215, 219, 222;
 
 

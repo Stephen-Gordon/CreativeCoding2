@@ -193,7 +193,7 @@ class StackedChart {
                 push();
                 for (let j = 0; j < this.data[i].values.length; j++) {
                    
-                    vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].Qol));
+                    vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].total/3));
                     translate(0, this.scaleData(-this.data[i].values[j]))
 
                 }
