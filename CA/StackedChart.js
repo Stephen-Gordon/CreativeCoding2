@@ -2,7 +2,8 @@ class StackedChart {
     constructor(_data, _legend) {
         this.data = _data;
         this.legend = _legend;
-
+        
+        this.numOfBars;
 
 
         this.values;
@@ -56,12 +57,16 @@ class StackedChart {
 
     updateValues() {
         this.tickSpacing = this.chartHeight / this.numTicks;
-        this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.data.length - 1));
-        this.barWidth = this.availableWidth / this.data.length;
+        this.availableWidth = this.chartWidth - (this.margin * 2) - (this.spacing * (this.numOfBars - 1));
+        this.barWidth = this.availableWidth / this.numOfBars;
 
 
     }
 
+    updateGuiVals(numBars) {
+        this.numOfBars = numBars;
+    }
+    
     calculateMaxValue() {
         let listValues = this.data.map(function (x) {
             return x.total
@@ -183,7 +188,7 @@ class StackedChart {
             beginShape();
 
 
-            for (let i = 0; i < this.data.length; i++) {
+            for (let i = 0; i < this.numOfBars; i++) {
 
                 push();
                 for (let j = 0; j < this.data[i].values.length; j++) {
@@ -205,7 +210,7 @@ class StackedChart {
     drawRects() {
         push();
         translate(this.margin, 0);
-        for (let i = 0; i < this.data.length; i++) {
+        for (let i = 0; i < this.numOfBars; i++) {
 
             //Stack loop
             push();

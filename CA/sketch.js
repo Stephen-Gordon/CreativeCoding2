@@ -5,7 +5,11 @@ let params = {
 
     numOfBarsHor: 10,
 	numOfBarsHorMin: 1,
-    numOfBarsHorMax: 10
+    numOfBarsHorMax: 10,
+
+    numOfBarsStacked: 10,
+    numOfBarsStackedMin: 1,
+    numOfBarsStackedMax: 10
 }
 
 
@@ -112,6 +116,8 @@ function draw() {
 
     chart03.updateValues();
     chart03.render();
+    chart03.updateGuiVals(params.numOfBarsStacked);
+
     chart04.updateValues();
     chart04.render();
 }

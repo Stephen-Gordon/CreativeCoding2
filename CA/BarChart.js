@@ -71,7 +71,7 @@ class BarChart {
 
     calculateMaxValue() {
         let listValues = this.data.map(function (x) {
-            return x.PollutionIndex
+            return x.PollIndex
         })
         this.maxValue = max(listValues);
         this.tickIncrements = this.maxValue / this.numTicks;
@@ -169,8 +169,8 @@ class BarChart {
     
     
             for (let i = 0; i < this.numOfBars; i++) {
-                ellipse(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex) / 2, 2);
-                vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex) / 2);
+                ellipse(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollIndex) / 2, 2);
+                vertex(((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollIndex) / 2);
             }
             endShape();
             pop();
@@ -190,14 +190,14 @@ class BarChart {
             //bars
             fill(this.colors[colorNumber]);
             noStroke();
-            rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].PollutionIndex));
+            rect((this.barWidth + this.spacing) * i, 0, this.barWidth, this.scaleData(-this.data[i].PollIndex));
 
             //numbers (text)
             noStroke();
             fill(this.fontColor)
             textSize(this.fontSize);
             textAlign(CENTER, CENTER)
-            text(this.data[i].PollutionIndex, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollutionIndex) - 10);
+            text(this.data[i].PollIndex, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, this.scaleData(-this.data[i].PollIndex) - 10);
 
 
             //text
