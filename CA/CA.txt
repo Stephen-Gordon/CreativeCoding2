@@ -1,7 +1,2 @@
-https://epi.yale.edu/epi-results/2020/component/epi
-
-Chart ranking countries by Epi
-
-
-Qol index
+Data source
 https://www.numbeo.com/quality-of-life/rankings_by_country.jsp
