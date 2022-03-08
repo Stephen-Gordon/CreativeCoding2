@@ -12,7 +12,7 @@ class HorBarChart {
         this.xAxisTitle = "Quality of Life Index Score";
         this.yAxisTitle = "Countries"
         this.axisTitleFontSize = 16;
-
+        this.tickFontSize = 14;
 
         this.chartWidth = 300;
         this.chartHeight = 300;
@@ -136,7 +136,7 @@ class HorBarChart {
             if (this.showValues) {
                 fill(this.fontColor);
                 noStroke();
-                textSize(this.fontSize);
+                textSize(this.tickFontSize);
                 textAlign(CENTER, CENTER);
                 text((i * this.tickIncrements).toFixed(this.numPlaces), this.tickSpacing * i, 30);
             }
@@ -197,7 +197,7 @@ class HorBarChart {
                 if (this.rotateLabels) {
                     push()
                     noStroke();
-                    textSize(this.fontSize);
+                    textSize(this.tickFontSize);
                     textAlign(RIGHT, CENTER);
                     translate(-10, ((this.barWidth + this.spacing) * -i) - this.barWidth / 2);
                     rotate(PI / 4)
@@ -208,7 +208,7 @@ class HorBarChart {
 
                     noStroke();
                     fill(this.fontColor)
-                    textSize(this.fontSize);
+                    textSize(this.tickFontSize);
                     textAlign(CENTER, BOTTOM);
                     text(this.data[i].country, -30, (-(this.barWidth + this.spacing) * i) + this.barWidth / 2);
                 }

@@ -16,6 +16,8 @@ class StackedChart {
         this.yAxisTitle = "Pollution Index Score"
         this.axisTitleFontSize = 16;
 
+        this.tickFontSize = 14;
+
         this.chartWidth;
         this.chartHeight;
 
@@ -49,7 +51,7 @@ class StackedChart {
 
         this.tickColor = (33, 37, 41);
         this.strokeThickness = 1;
-        this.fontSize = 14;
+        this.fontSize = 10;
 
         this.updateValues();
         this.calculateMaxValue();
@@ -130,7 +132,7 @@ class StackedChart {
         fill(this.fontColor);
         textAlign(CENTER, CENTER)
         textSize(this.titleFontSize);
-        text(this.yAxisTitle, this.chartWidth / 2, -50)
+        text(this.yAxisTitle, this.chartWidth / 2, -60)
         pop()
 
     }
@@ -158,7 +160,7 @@ class StackedChart {
             if (this.showValues) {
                 fill(this.fontColor);
                 noStroke();
-                textSize(this.fontSize);
+                textSize(this.tickFontSize);
                 textAlign(RIGHT, CENTER);
                 text((i * this.tickIncrements).toFixed(this.numPlaces), -15, this.tickSpacing * -i);
             }
@@ -242,7 +244,7 @@ class StackedChart {
                 if (this.rotateLabels) {
                     push()
                     noStroke();
-                    textSize(this.fontSize);
+                    textSize(this.tickFontSize);
                     textAlign(LEFT, CENTER);
                     translate(((this.barWidth + this.spacing) * i) + this.barWidth / 2, 10);
                     rotate(PI / 4)
@@ -252,7 +254,7 @@ class StackedChart {
 
                     noStroke();
                     fill(255);
-                    textSize(this.fontSize);
+                    textSize(this.tickFontSize);
                     textAlign(CENTER, BOTTOM);
                     text(this.data[i].country, ((this.barWidth + this.spacing) * i) + this.barWidth / 2, 20);
                 }

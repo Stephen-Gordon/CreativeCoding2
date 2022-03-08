@@ -9,11 +9,8 @@ let params = {
 
     numOfBarsStacked: 10,
     numOfBarsStackedMin: 1,
-    numOfBarsStackedMax: 10,
+    numOfBarsStackedMax: 10
 
-    chartWidth: 300,
-    numOfBarsStackedMin: 300,
-    numOfBarsStackedMax: 600
 }
 
 

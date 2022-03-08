@@ -3,6 +3,7 @@ let dataSmall = [];
 let table;
 let smallTable;
 let newFont;
+
 function preload() {
     table = loadTable('data/myData.csv', 'csv', 'header');
     smallTable = loadTable('data/myDataSmall.csv', 'csv', 'header');
@@ -18,9 +19,16 @@ function generateData() {
         dataSmall.push(smallTable.rows[r].obj)
     }
 
-    /* for (let i = 0; i < dataSmall.length; i++) {
-        dataSmall[i].colour = int(dataSmall[i].colour)
-     } */
-  
-    
+    for (let i = 0; i < dataSmall.length; i++) {
+        dataSmall[i].QualityofLifeIndex = int(dataSmall[i].QualityofLifeIndex)
+    }
+
+    for (let i = 0; i < dataSmall.length; i++) {
+        dataSmall[i].PollutionIndex = int(dataSmall[i].PollutionIndex)
+    }
+
+    for (let i = 0; i < dataSmall.length; i++) {
+        dataSmall[i].PollIndex = int(dataSmall[i].PollIndex)
+    }
+
 }
